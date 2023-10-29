@@ -1,27 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Playfair+Display:wght@700&family=Poppins:ital@1&family=Roboto+Slab:wght@500&family=Staatliches&family=Young+Serif&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: garamond;
+  src: url(../public/fonts/AppleGaramond.ttf);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: sfpro;
+  src: url(../public/fonts/SFPRODISPLAYBLACKITALIC.OTF);
+}
+
+@layer base{
+  body{
+    @apply bg-background text-primary
+  }
+
+  h1{
+    @apply text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-center lg:text-start font-bannerHeading
+  }
+
+  h2{
+    @apply text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-center lg:text-start font-logo
+  }
+
+  p{
+    @apply text-xl lg:text-3xl font-logo font-bold
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::-webkit-scrollbar{
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track{
+  background-color: #00091a;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #FFCF0040;
+  border-radius: 1rem;
+  background-clip: content-box;
 }
