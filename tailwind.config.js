@@ -17,6 +17,9 @@ module.exports = {
         background: "#000",
         primary: "#fff",
         secondary: "#FECE00"
+      },
+      backgroundImage: {
+        category: "url('../public/assets/images/shoe.jpg')"
       }
     },
   },

@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import anime from "animejs";
 import Image from "next/image";

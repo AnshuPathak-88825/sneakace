@@ -18,7 +18,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="w-full h-20 sticky top-0 z-[999]">
+      <div className="w-full bg-background h-20 sticky top-0 z-[999]">
         <div className="container mx-auto flex items-center justify-between w-full h-full px-4 lg:px-16">
           <div className="flex items-center gap-3">
             <Image src={logo} alt="logo" width={100} height={100} />
@@ -34,7 +34,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="flex lg:hidden rounded-full border p-2" onClick={handleChange}>
+          <div
+            className="flex lg:hidden rounded-full border p-2"
+            onClick={handleChange}>
             {nav ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
           </div>
 
