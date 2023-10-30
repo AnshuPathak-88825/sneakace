@@ -11,7 +11,7 @@ const Categories = () => {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-10 mt-3">
           <div className="flex flex-col items-center gap-5">
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[520px] lg:h-[265px]">
+              <div className="lg:w-[320px] lg:h-[265px]">
                 <Image
                   src={bg}
                   alt="bg-image"
@@ -21,7 +21,7 @@ const Categories = () => {
             </div>
 
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[520px] lg:h-[265px]">
+              <div className="lg:w-[320px] lg:h-[265px]">
                 <Image
                   src={bg}
                   alt="bg-image"
@@ -45,7 +45,7 @@ const Categories = () => {
 
           <div className="flex flex-col items-center gap-5">
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[520px] lg:h-[265px]">
+              <div className="lg:w-[320px] lg:h-[265px]">
                 <Image
                   src={bg}
                   alt="bg-image"
@@ -55,7 +55,7 @@ const Categories = () => {
             </div>
 
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[520px] lg:h-[265px]">
+              <div className="lg:w-[320px] lg:h-[265px]">
                 <Image
                   src={bg}
                   alt="bg-image"

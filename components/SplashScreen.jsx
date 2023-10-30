@@ -14,8 +14,8 @@ const SplashScreen = ({ finishLoading }) => {
     loader.add({
       targets: "#logo",
       delay: 0,
-      scale: 0,
-      duration: 4000,
+      scale: 1,
+      duration: 3000,
       easing: "easeInOutExpo",
       translateY: -300,
     });
