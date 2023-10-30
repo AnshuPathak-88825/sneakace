@@ -20,17 +20,21 @@ const Navbar = () => {
     <>
       <div className="w-full bg-background h-20 sticky top-0 z-[999]">
         <div className="container mx-auto flex items-center justify-between w-full h-full px-4 lg:px-16">
-          <div className="flex items-center gap-3">
-            <Image src={logo} alt="logo" width={100} height={100} />
-            <h2 className="hidden lg:block">Sneakace</h2>
-          </div>
+          <Link href="/">
+            <div className="flex items-center gap-3">
+              <Image src={logo} alt="logo" width={100} height={100} />
+              <h2 className="hidden lg:block">Sneakace</h2>
+            </div>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-3">
             <div className="rounded-full border p-2 cursor-pointer">
               <BsFillPersonFill size={30} />
             </div>
             <div className="rounded-full border p-2 cursor-pointer hover:bg-secondary/50 duration-300">
-              <button className="w-[120px] text-xl">Login</button>
+              <Link href="/login">
+                <button className="w-[120px] text-xl">Login</button>
+              </Link>
             </div>
           </div>
 
@@ -62,7 +66,7 @@ const Navbar = () => {
                   </Link>
                 </ul>
               ))}
-              <Link href="/register" onClick={handleChange}>
+              <Link href="/login" onClick={handleChange}>
                 <button className="p-3 text-lg w-[108px] border border-primary rounded-lg text-primary hover:bg-background hover:text-primary duration-200 ease-in-out">
                   Login
                 </button>

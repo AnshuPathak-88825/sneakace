@@ -15,9 +15,9 @@ const SplashScreen = ({ finishLoading }) => {
       targets: "#logo",
       delay: 0,
       scale: 1,
-      duration: 3000,
+      duration: 2000,
       easing: "easeInOutExpo",
-      translateY: -300,
+      translateX: -200,
     });
   };
 

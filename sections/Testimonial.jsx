@@ -50,7 +50,7 @@ const Testimonial = () => {
     <section className="w-full p-3 mt-10 bg-primary rounded-tl-[60px] lg:rounded-tl-[245px] rounded-tr-[60px] lg:rounded-tr-[243px]">
       <div className="container mx-auto flex flex-col items-center justify-center">
         <div className="flex items-center justify-center">
-          <h3 className="text-secondary">WHAT OUR CUSTOMERS SAYS</h3>
+          <h2 className="text-secondary">WHAT OUR CUSTOMERS SAYS</h2>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-10 mt-10">
