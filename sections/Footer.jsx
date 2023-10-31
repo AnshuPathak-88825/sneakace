@@ -1,11 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import logo from "../public/assets/images/logo.svg";
+import design1 from '../public/assets/images/footer-design_1.svg'
 import Link from "next/link";
 const Footer = () => {
   return (
-    <div className="w-full bg-background p-3">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-26 py-5">
+    <div className="w-full bg-background relative">
+      <Image
+        src={design1}
+        alt=""
+        className="hidden lg:block absolute bottom-0 left-0 z-[600]"
+      />
+      <Image
+        src={design1}
+        alt=""
+        className="hidden lg:block absolute -top-50 right-0 rotate-180"
+      />
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-26 py-5 p-5">
         <div className="flex flex-col items-center gap-3">
           <Image src={logo} alt="logo" className="w-[264px] h-[125px]" />
           <p className="lg:text-[100px] tracking-widest text-3xl lg:text-5xl font-normal">

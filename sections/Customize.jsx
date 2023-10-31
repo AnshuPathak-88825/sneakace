@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "../components/Slider";
 const Customize = () => {
   return (
-    <div className="w-full p-3">
+    <div className="w-full p-3 lg:p-10">
       <div className="flex flex-col gap-3 items-center justify-center mt-5">
         <h2 className="tracking-wider text-secondary text-center">
           ADD YOUR MAGIC TOUCH

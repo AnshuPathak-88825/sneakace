@@ -6,6 +6,7 @@ import TransitionEffect from "../../components/TransitionEffect";
 const Login = () => {
   return (
     <div className="w-full lg:h-[85vh] p-3">
+      <TransitionEffect />
       <div className="container mx-auto w-full h-full ">
         <div className="flex flex-col lg:flex-row items-center justify-center bg-background p-5 shadow-md shadow-slate-50 rounded-2xl lg:gap-60 w-full h-full">
           <div>

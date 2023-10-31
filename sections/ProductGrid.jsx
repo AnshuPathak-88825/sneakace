@@ -23,7 +23,7 @@ const ProductGrid = () => {
       </div>
 
       <div className="flex items-center mt-5">
-        <div className="container mx-auto grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-x-10 xl:gap-y-10">
+        <div className="container mx-auto grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 xl:gap-x-10 xl:gap-y-10">
           {products.map((item, index) => (
             <Link href={`/products/${item.id}`} key={index}>
               <ProductCard

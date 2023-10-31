@@ -15,7 +15,7 @@ const Trending = () => {
   };
 
   return (
-    <div className="w-full py-10 p-5">
+    <div className="w-full py-10 p-3 lg:p-10">
       <div className="flex items-center justify-center">
         <h2 className="text-secondary">TRENDING</h2>
       </div>

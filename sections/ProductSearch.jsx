@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 const ProductSearch = () => {
+
+  const [phrase, setPhrase] = useState('')
+
   return (
     <div className="max-w-[1040px] p-3">
       <div className="container mx-auto flex flex-col items-center lg:items-start gap-10">
@@ -10,6 +13,8 @@ const ProductSearch = () => {
             <input
               type="text"
               placeholder="Search here.."
+              value={phrase}
+              onChange={e => setPhrase(e.target.value)}
               className="lg:w-[200px] outline-none bg-transparent rounded-lg"
             />
             <p className="text-lg">|</p>
@@ -29,7 +34,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 All Categories
               </label>
             </div>
@@ -43,7 +48,7 @@ const ProductSearch = () => {
               />
               <label
                 for="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary ">
                 Design Laces
               </label>
             </div>
@@ -57,7 +62,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 Reflective Laces
               </label>
             </div>
@@ -76,7 +81,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 All Colors
               </label>
             </div>
@@ -90,7 +95,7 @@ const ProductSearch = () => {
               />
               <label
                 for="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 White
               </label>
             </div>
@@ -104,7 +109,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 Black
               </label>
             </div>
@@ -118,7 +123,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 Brown
               </label>
             </div>
@@ -137,7 +142,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 S
               </label>
             </div>
@@ -151,7 +156,7 @@ const ProductSearch = () => {
               />
               <label
                 for="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 M
               </label>
             </div>
@@ -165,7 +170,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 L
               </label>
             </div>
@@ -179,7 +184,7 @@ const ProductSearch = () => {
               />
               <label
                 for="default-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                className="ml-2 text-sm font-medium text-primary">
                 XL
               </label>
             </div>
