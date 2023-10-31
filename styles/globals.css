@@ -6,29 +6,34 @@
 
 @font-face {
   font-family: garamond;
-  src: url(../public/fonts/AppleGaramond.ttf);
+  src: url(../public/fonts/Garamond_Regular.ttf);
+}
+
+@font-face {
+  font-family: staatliches;
+  src: url(../public/fonts/Staatliches-Regular.ttf);
 }
 
 @font-face {
   font-family: sfpro;
-  src: url(../public/fonts/SFPRODISPLAYBLACKITALIC.OTF);
+  src: url(../public/fonts/SFPRODISPLAYREGULAR.OTF);
 }
 
 @layer base {
   body {
-    @apply bg-background text-primary;
+    @apply bg-background text-primary
   }
 
   h1 {
-    @apply text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-center lg:text-start font-bannerHeading;
+    @apply text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl text-center lg:text-start font-logo;
   }
 
   h2 {
-    @apply text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-center lg:text-start font-logo;
+    @apply text-3xl sm:text-3xl md:text-3xl lg:text-6xl xl:text-6xl text-center lg:text-start font-normal font-bannerHeading;
   }
 
   p {
-    @apply text-xl lg:text-3xl font-logo font-bold;
+    @apply text-xl lg:text-3xl font-bodyContent font-bold;
   }
 }
 

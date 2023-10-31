@@ -7,7 +7,7 @@ const Categories = () => {
     <div className="w-full bg-primary text-black rounded-br-[70px] lg:rounded-br-[130px] rounded-bl-[70px] lg:rounded-bl-[130px]">
       <div className="container mx-auto py-10 p-3">
         <div className="flex items-center justify-center">
-          <h2 className="text-secondary font-bannerHeading">CATEGORIES</h2>
+          <h2 className="text-background font-bannerHeading">CATEGORIES</h2>
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-10 mt-3">
           <div className="flex flex-col items-center gap-5">

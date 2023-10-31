@@ -11,7 +11,7 @@ module.exports = {
       fontFamily: {
         logo: "garamond",
         bodyContent: "sfpro",
-        bannerHeading: "Staatliches",
+        bannerHeading: "staatliches",
       },
       colors: {
         background: "#000",

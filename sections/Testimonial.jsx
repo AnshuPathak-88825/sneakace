@@ -1,6 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const Testimonial = () => {
+  const slideLeft = () => {
+    var slider = document.getElementById("testimonial-slider");
+    slider.scrollLeft = slider.scrollLeft - 400;
+  };
+
+  const slideRight = () => {
+    var slider = document.getElementById("testimonial-slider");
+    slider.scrollLeft = slider.scrollLeft + 400;
+  };
+
   const testimonials = [
     {
       photo: "/assets/images/avator1.png",
@@ -26,7 +37,7 @@ const Testimonial = () => {
     {
       photo: "/assets/images/avator1.png",
       description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate atque labore natus vel, provident aliquam illo dolor laborum repellat enim amet pariatur consequuntur est at culpa aperiam eum facere accusamus.",
       name: "Mr. Sakshaat",
       date: "14th October, 2023",
     },
@@ -48,33 +59,48 @@ const Testimonial = () => {
 
   return (
     <section className="w-full p-3 mt-10 bg-primary rounded-tl-[60px] lg:rounded-tl-[245px] rounded-tr-[60px] lg:rounded-tr-[243px]">
-      <div className="container mx-auto flex flex-col items-center justify-center">
-        <div className="flex items-center justify-center">
-          <h2 className="text-secondary">WHAT OUR CUSTOMERS SAYS</h2>
+
+      <div className="flex items-center justify-center">
+      <h2 className="text-secondary">WHAT OUR CUSTOMERS SAY</h2>
+      </div>
+      <div className="relative flex items-center justify-center bg-[#FEF9EC] rounded-tl-[60px] lg:rounded-tl-[245px] rounded-tr-[60px] lg:rounded-tr-[243px] p-20 mt-10">
+        <MdChevronLeft
+          className="opacity-50 cursor-pointer hover:opacity-100 text-background"
+          onClick={slideLeft}
+          size={40}
+        />
+        <div
+          id="testimonial-slider"
+          className="w-full h-full overflow-x-scroll overflow-hidden scroll whitespace-nowrap scroll-smooth scrollbar-hide">
+          <div className="flex gap-28">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="flex flex-col items-center lg:w-[250px]">
+                <Image
+                  src={testimonial.photo}
+                  width={200}
+                  height={200}
+                  alt={testimonial.name}
+                  className="rounded-full"
+                />
+                <p className="text-xl lg:text-2xl text-background ">
+                  {testimonial.name}
+                </p>
+                <p className="text-xl lg:text-2xl text-background ">
+                  {testimonial.date}
+                </p>
+                {/* <p className="text-lg text-center text-background">
+                  {testimonial.description}
+                </p> */}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-10 mt-10">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <Image
-                src={testimonial.photo}
-                width={200}
-                height={200}
-                alt={testimonial.name}
-                className="rounded-full"
-              />
-              <p className="text-xl lg:text-2xl text-background ">
-                {testimonial.name}
-              </p>
-              <p className="text-xl lg:text-2xl text-background ">
-                {testimonial.date}
-              </p>
-              <p className="text-lg text-center text-background lg:w-[300px]">
-                {testimonial.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <MdChevronRight
+          className="opacity-50 cursor-pointer hover:opacity-100 text-background"
+          onClick={slideRight}
+          size={40}
+        />
       </div>
     </section>
   );

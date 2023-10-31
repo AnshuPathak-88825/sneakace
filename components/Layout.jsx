@@ -4,7 +4,7 @@ import Navbar from "../sections/Navbar";
 import Footer from "../sections/Footer";
 import SplashScreen from "./SplashScreen";
 import { usePathname } from "next/navigation";
-const Layout = ({ children }) => {
+const Layout = ({ children, title_tag }) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [isLoading, setIsLoading] = useState(isHome);
