@@ -14,10 +14,10 @@ const SplashScreen = ({ finishLoading }) => {
     loader.add({
       targets: "#logo",
       delay: 0,
-      scale: 1,
+      scale: 2,
       duration: 2000,
       easing: "easeInOutExpo",
-      translateX: -200,
+      // translateY: -200,
     });
   };
 
@@ -36,10 +36,10 @@ const SplashScreen = ({ finishLoading }) => {
           id="logo"
           isMounted={isMounted}>
           <Image src={logo} alt="logo" width={300} height={300} />
-          <h2 className="font-logo lg:text-7xl tracking-widest">SNEAKACE</h2>
+          {/* <h2 className="font-logo lg:text-7xl tracking-widest">SNEAKACE</h2>
           <p className="font-bannerHeading lg:text-[36px] tracking-widest text-center">
             TIE KNOTS WITH ROYALTY
-          </p>
+          </p> */}
         </div>
       </div>
     </>
