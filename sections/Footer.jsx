@@ -26,7 +26,7 @@ const Footer = () => {
           <p className="lg:text-[100px] tracking-widest text-3xl lg:text-5xl font-logo font-normal">
             SNEAKACE
           </p>
-          <p className="lg:tracking-[0.7rem] font-bannerHeading text-center text-secondary font-normal">
+          <p className="lg:tracking-[12.88px] font-bannerHeading text-center text-secondary font-normal">
             THE KNOTS WITH ROYALTY
           </p>
           <div className="flex items-center justify-center">

@@ -111,7 +111,7 @@ const Categories = () => {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-10 mt-2">
           <Link href="/products">
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[500px] 2xl:w-[871.11px] lg:h-[246.04px]">
+              <div className="lg:w-[500px] 2xl:w-[871.11px] lg:h-[350.04px]">
                 <Image
                   src={bg}
                   alt="bg-image"
@@ -129,7 +129,7 @@ const Categories = () => {
 
           <Link href="/products">
             <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-              <div className="lg:w-[500px] 2xl:w-[871.11px] lg:h-[246.04px]">
+              <div className="lg:w-[500px] 2xl:w-[871.11px] lg:h-[350.04px]">
                 <Image
                   src={bg}
                   alt="bg-image"

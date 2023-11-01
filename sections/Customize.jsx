@@ -20,7 +20,9 @@ const Customize = () => {
           SneakAce&apos;s co-creation service.
         </p>
 
-        <button className="p-[10px] rounded-full text-background bg-primary w-[150px] font-bold text-xl">Customize</button>
+        <button className="w-[200px] py-4 rounded-full bg-primary text-background text-lg font-semibold transition-transform active:scale-95 mb-3 hover:opacity-75">
+          Customize
+        </button>
       </div>
     </div>
   );
