@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import homePage from "../public/assets/images/homePage.svg";
 import TransitionEffect from "../components/TransitionEffect";
 const HomePage = () => {
   return (

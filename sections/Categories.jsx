@@ -15,7 +15,7 @@ const Categories = () => {
 
             <Link href="/products">
               <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-                <div className="lg:w-[320px] 2xl:w-[550px] lg:h-[265px]">
+                <div className="md:w-[290px] lg:w-[350px] 2xl:w-[550px] lg:h-[265px]">
                   <Image
                     src={bg}
                     alt="bg-image"
@@ -33,7 +33,7 @@ const Categories = () => {
 
             <Link href="/products">
               <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-                <div className="lg:w-[320px] 2xl:w-[550px] lg:h-[265px]">
+                <div className="md:w-[290px] lg:w-[350px] 2xl:w-[550px] lg:h-[265px]">
                   <Image
                     src={bg}
                     alt="bg-image"
