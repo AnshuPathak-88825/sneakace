@@ -1,5 +1,6 @@
-import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+
 import TransitionEffect from "../../components/TransitionEffect";
 const Login = () => {
   return (
@@ -30,21 +31,23 @@ const Login = () => {
           </div>
 
           <div className="flex items-center justify-center mt-5 lg:mt-[44px]">
-            <button className="px-[100px] py-[10px] lg:py-[25px] lg:px-[235px] bg-primary rounded-md text-background text-[12px] lg:text-[24px]">
+            <button className="px-[80px] py-[10px] lg:py-[8px] lg:px-[86px] bg-primary rounded-md text-background text-[12px] lg:text-[24px]">
               REGISTER
             </button>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-5 lg:gap-5 justify-center mt-5 lg:mt-[44px]">
             <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg">
-              <FaFacebook size={30} />
-              <p className="text-md">Facebook</p>
-            </div>
-
-            <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg">
               <FcGoogle size={30} />
               <p className="text-md">Google</p>
             </div>
+          </div>
+          <div className="flex flex-row items-center justify-center mt-5 lg:mt-[44px]">
+            <p className="text-base	"> Already User?</p>
+            <Link href="/login">
+              <p className="text-base text-[#FFCF00] ml-[10px] cursor-pointer	"> SIGN IN</p>
+            </Link>
+            
           </div>
         </div>
       </div>

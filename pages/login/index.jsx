@@ -1,6 +1,5 @@
 import Link from "next/link";
 import TransitionEffect from '../../components/TransitionEffect'
-import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   return (
@@ -36,17 +35,12 @@ const Login = () => {
           </div>
 
           <div className="flex items-center justify-center mt-5 lg:mt-[44px]">
-            <button className="px-[100px] py-[10px] lg:py-[25px] lg:px-[249px] bg-primary rounded-md text-background text-[12px] lg:text-[24px]">
+            <button className="px-[80px] py-[10px] lg:py-[13px] lg:px-[105px] bg-primary rounded-lg text-background text-[12px] lg:text-[24px]">
               LOGIN
             </button>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-5 lg:gap-5 justify-center mt-5 lg:mt-[44px]">
-            <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg">
-              <FaFacebook size={30} />
-              <p className="text-md">Facebook</p>
-            </div>
-
             <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg">
               <FcGoogle size={30} />
               <p className="text-md">Google</p>
