@@ -199,9 +199,9 @@ const Trending = () => {
       </div>
 
       <div className="flex items-center justify-center mt-3">
-        <Link href="/products">
-          <p className="font-normal">View All Products</p>
-        </Link>
+      <Link href="/products" className=" text-white underline hover:underline transition-all duration-300 ease-in-out hover:text-[#FFCF00]">
+      <p className="font-normal text-lg">View All Products</p>
+    </Link>
       </div>
     </div>
   );
