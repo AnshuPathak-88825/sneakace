@@ -39,7 +39,7 @@ const ProductDetail = ({ProductVisible,setProductVisible}) => {
   };
 
   return (
-    <div className="fixed top-0 z-50 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed top-0 z-[1000] left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
       <div className="border  w-3/4  mx-auto bg-white p-0 m-0">
         <div className="flex justify-end m-4">
           <button
@@ -74,7 +74,7 @@ const ProductDetail = ({ProductVisible,setProductVisible}) => {
               <div className="flex items-center mb-4">
                 <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
               </div>
-              <div className="text-sm lg:text-base text-gray-600 mb-4 ">
+              <div className="text-sm lg:text-base text-gray-600 mb-4 whitespace-normal">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
