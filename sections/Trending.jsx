@@ -6,8 +6,10 @@ import { BsBoxArrowInRight } from "react-icons/bs";
 import Image from "next/image";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import TabButton from "../components/TabButton";
+import ProductDetail from "../sections/ProductDetail"
 import Link from "next/link";
 const Trending = () => {
+  const [ProductVisible, setProductVisible] = useState(false);
   const slideLeft = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 400;
@@ -60,8 +62,9 @@ const Trending = () => {
                       />
                     </div>
 
-                    <div className="p-2 rounded-full bg-secondary text-background cursor-pointer">
+                    <div className="p-2 rounded-full bg-secondary text-background cursor-pointer" onClick={()=>{setProductVisible(!ProductVisible)}}>
                       <AiOutlineEye size={30} className="text-background" />
+                      {ProductVisible&&<ProductDetail ProductVisible={ProductVisible} setProductVisible={setProductVisible}/>}
                     </div>
                   </div>
                 </div>
