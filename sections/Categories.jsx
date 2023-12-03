@@ -54,7 +54,7 @@ const Categories = () => {
           <Link href="/products">
             <div className="flex flex-col items-center gap-5">
               <div className="group relative items-center justify-center rounded-2xl overflow-hidden cursor-pointer">
-                <div className="lg:w-[651.38px] lg:h-[574.23px]">
+                <div className="lg:w-[600px] lg:h-[500px]">
                   <Image
                     src={bg}
                     alt="bg-image"
