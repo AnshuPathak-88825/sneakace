@@ -4,16 +4,46 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const Testimonial = () => {
   const slideLeft = () => {
     var slider = document.getElementById("testimonial-slider");
-    slider.scrollLeft = slider.scrollLeft - 400;
+    slider.scrollLeft = slider.scrollLeft - 300;
   };
 
   const slideRight = () => {
     var slider = document.getElementById("testimonial-slider");
-    slider.scrollLeft = slider.scrollLeft + 400;
+    slider.scrollLeft = slider.scrollLeft + 300;
   };
 
   const testimonials = [
     {
+      photo: "/assets/images/avator1.png",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
+      name: "Mr. Sakshaat",
+      date: "14th October, 2023",
+    }
+    
+    ,
+    {
+      photo: "/assets/images/avator1.png",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
+      name: "Mr. Sakshaat",
+      date: "14th October, 2023",
+    }
+    ,{
+      photo: "/assets/images/avator1.png",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
+      name: "Mr. Sakshaat",
+      date: "14th October, 2023",
+    }
+    ,{
+      photo: "/assets/images/avator1.png",
+      description:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
+      name: "Mr. Sakshaat",
+      date: "14th October, 2023",
+    }
+    ,{
       photo: "/assets/images/avator1.png",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, natus!",
@@ -75,7 +105,7 @@ const Testimonial = () => {
           className="w-full h-full overflow-x-scroll overflow-hidden scroll whitespace-nowrap scroll-smooth scrollbar-hide">
           <div className="flex gap-28">
             {testimonials.map((testimonial, index) => (
-            <div key={index} className="flex flex-col items-center lg:w-[600px]  h-[300px]  ">
+            <div key={index} className="flex flex-col items-center lg:w-[600px]  h-[300px]  p-5">
             <Image
               src={testimonial.photo}
               width={200}
