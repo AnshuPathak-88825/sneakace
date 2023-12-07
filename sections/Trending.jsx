@@ -114,8 +114,10 @@ const Trending = () => {
                       />
                     </div>
 
-                    <div className="p-2 rounded-full bg-secondary text-background cursor-pointer">
+                    <div className="p-2 rounded-full bg-secondary text-background cursor-pointer" onClick={()=>{setProductVisible(!ProductVisible)}}>
                       <AiOutlineEye size={30} className="text-background" />
+                      {ProductVisible&&<ProductDetail ProductVisible={ProductVisible} setProductVisible={setProductVisible}/>}
+
                     </div>
                   </div>
                 </div>
