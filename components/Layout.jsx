@@ -4,10 +4,12 @@ import Navbar from "../sections/Navbar";
 import Footer from "../sections/Footer";
 import SplashScreen from "./SplashScreen";
 import { usePathname } from "next/navigation";
+
 const Layout = ({ children, title_tag }) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [isLoading, setIsLoading] = useState(isHome);
+  const isAdmin = pathname.startsWith("/admin");
   useEffect(() => {
     if (isLoading) {
       return;
@@ -20,20 +22,28 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      <div className="flex flex-col min-h-screen">
-        {isLoading && isHome ? (
-          <SplashScreen finishLoading={() => setIsLoading(false)} />
-        ) : (
+      {isLoading && isHome && (
+        <SplashScreen finishLoading={() => setIsLoading(false)} />
+      )}
+
+      {isHome && (
+        <div className="flex flex-col min-h-screen">
           <>
             <Navbar />
             <main className="flex-grow">{children}</main>
             <Footer />
           </>
-        )}
-      </div>
+        </div>
+      )}
+      {isAdmin && (
+        <div className="flex flex-col min-h-screen bg-white text-black">
+          <>
+            <main className="flex-grow">{children}</main>
+          </>
+        </div>
+      )}
     </>
   );
 };
 
 export default Layout;
- 
