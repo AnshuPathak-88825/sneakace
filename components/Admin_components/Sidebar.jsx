@@ -18,10 +18,15 @@ import React, { useState, useMemo } from "react";
 import { SlLogout } from "react-icons/sl";
 
 const menuItems = [
-  { id: 2, label: "Product Lists", icon: MdProductionQuantityLimits, link: "/posts" },
+  {
+    id: 2,
+    label: "Product Lists",
+    icon: MdProductionQuantityLimits,
+    link: "/posts",
+  },
   { id: 3, label: "Create Products ", icon: CiEdit, link: "/users" },
   { id: 4, label: "Orders", icon: CiUser, link: "/tutorials" },
-  {id:5,label:"Discount",icon:MdOutlineDiscount,link:"/cupon"}
+  { id: 5, label: "Discount", icon: MdOutlineDiscount, link: "/cupon" },
 ];
 
 const Sidebar = () => {
@@ -41,7 +46,7 @@ const Sidebar = () => {
   );
 
   const WrapperClasses = classNames(
-    "h-screen px-4 pt-8 pb-4 bg-light flex justify-between flex-col ",
+    "h-screen px-4 pt-8 pb-4 bg-gray-200 flex justify-between flex-col  ",
     {
       ["w-80"]: !toggleCollapse,
       ["w-20"]: toggleCollapse,
@@ -58,7 +63,7 @@ const Sidebar = () => {
     return classNames(
       "flex items-center cursor-pointer rounded w-full overflow-hidden whitespace-nowrap",
       {
-        "hover:bg-white": !toggleCollapse,
+        "hover:text-yellow-500": !toggleCollapse,
       }
     );
   };
@@ -96,16 +101,16 @@ const Sidebar = () => {
                   className={collapseIconClasses}
                   onClick={handleSidebarToggle}
                 >
-                  <GoSidebarCollapse className="w-8 h-8" />
+                  <GoSidebarCollapse className="w-5 h-5" />
                 </button>
               )}
             </div>
           </div>
         </div>
         <div className="flex flex-col items-start mt-24">
-          <div >
+          <div>
             <Link href="/admin">
-              <div className="flex py-4 px-3 items-center w-full h-full transition duration-300 ease-in-out hover:text-yellow-500">
+              <div className="flex py-4 px-3 items-center w-full h-full transition duration-300 ease-in-out ">
                 <div style={{ width: "2.5rem" }}>
                   <MdOutlineSpaceDashboard className="w-5 h-5" />
                 </div>
@@ -124,8 +129,8 @@ const Sidebar = () => {
           {menuItems.map(({ icon: Icon, ...menu }) => {
             const classes = getNavItemClasses(menu);
             return (
-              <div className={classes} key={menu.id} >
-                <Link href={menu.link} >
+              <div className={classes} key={menu.id}>
+                <Link href={menu.link}>
                   <div className="flex py-4 px-3 items-center w-full h-full transition duration-300 ease-in-out hover:text-yellow-500">
                     <div style={{ width: "2.5rem" }}>
                       <Icon className="w-5 h-5 " />
@@ -146,7 +151,11 @@ const Sidebar = () => {
           })}
         </div>
       </div>
-      <div className={`${getNavItemClasses({})} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500`}>
+      <div
+        className={`${getNavItemClasses(
+          {}
+        )} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500`}
+      >
         <div style={{ width: "2.5rem" }}>
           <SlLogout />
         </div>
