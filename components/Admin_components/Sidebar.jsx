@@ -42,7 +42,7 @@ const Sidebar = () => {
   );
 
   const WrapperClasses = classNames(
-    "h-screen px-4 pt-8 pb-4 bg-gray-200 flex justify-between flex-col  ",
+    "h-auto px-4 pt-8 pb-4 bg-gray-200 flex justify-between flex-col  ",
     {
       ["w-80"]: !toggleCollapse,
       ["w-20"]: toggleCollapse,
@@ -150,7 +150,7 @@ const Sidebar = () => {
       <div
         className={`${getNavItemClasses(
           {}
-        )} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500`}
+        )} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500 mt-[90vh]`}
       >
         <div style={{ width: "2.5rem" }}>
           <SlLogout />
