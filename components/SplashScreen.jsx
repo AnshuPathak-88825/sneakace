@@ -37,7 +37,7 @@ const SplashScreen = ({ finishLoading }) => {
           isMounted={isMounted}>
           <Image src={logo} alt="logo" width={300} height={300} />
           <h2 className="font-logo lg:text-7xl tracking-widest">SNEAKACE</h2>
-          <p className="font-bannerHeading lg:text-[36px] tracking-widest text-center">
+          <p className="font-bannerHeading lg:text-[36px] tracking-[.18em] text-center">
             TIE KNOTS WITH ROYALTY
           </p>
         </div>

@@ -19,35 +19,27 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const timeout = setTimeout(() => setIsMounted(true), 3500);
+    return () => clearTimeout(timeout); // Set isMounted to true when component is mounted
   }, []);
 
   return (
     <>
     <div
             className={`${
-              isScrolled ? "translate-y-0" : "translate-y-[-5rem]"
+              isMounted ? "translate-y-0" : "translate-y-[-5rem]"
             } transition-all duration-1000 ease-in-out fixed top-0 left-0 right-0 z-10`}
           >
       <div className="w-full bg-gradient-to-r from-background via-secondary/80 to-background h-20 sticky top-0 z-[999]">
         <div className="container mx-auto flex items-center justify-between w-full h-full px-4 lg:px-16">
           
             <Link href="/">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ">
                 <Image src={logo} alt="logo" width={100} height={100} />
-                <h1 className="hidden lg:block font-bold">SNEAKACE</h1>
+                <h1 className="hidden relative top-2 lg:block font-bold">SNEAKACE</h1>
               </div>
             </Link>
 
