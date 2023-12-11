@@ -37,9 +37,9 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between w-full h-full px-4 lg:px-16">
           
             <Link href="/">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ">
                 <Image src={logo} alt="logo" width={100} height={100} />
-                <h1 className="hidden lg:block font-bold">SNEAKACE</h1>
+                <h1 className="hidden relative top-2 lg:block font-bold">SNEAKACE</h1>
               </div>
             </Link>
 
