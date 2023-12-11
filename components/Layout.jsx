@@ -1,3 +1,4 @@
+// components/Layout.js
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Navbar from "../sections/Navbar";
@@ -8,8 +9,11 @@ import { usePathname } from "next/navigation";
 const Layout = ({ children, title_tag }) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isLogin = pathname === "/login";
+  const isProducts = pathname === "/products";
   const [isLoading, setIsLoading] = useState(isHome);
   const isAdmin = pathname.startsWith("/admin");
+
   useEffect(() => {
     if (isLoading) {
       return;
@@ -22,26 +26,19 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      {isLoading && isHome && (
+      {isLoading && (isHome || isLogin || isProducts) && (
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {isHome && (
+      {(isHome || isAdmin || isLogin || isProducts) && (
         <div className="flex flex-col min-h-screen">
-          <>
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </>
+          {isHome && <Navbar />}
+          <main className="flex-grow">{children}</main>
+          {isHome && <Footer />}
         </div>
       )}
-      {isAdmin && (
-        <div className="flex flex-col min-h-screen bg-white text-black">
-          <>
-            <main className="flex-grow">{children}</main>
-          </>
-        </div>
-      )}
+
+      
     </>
   );
 };

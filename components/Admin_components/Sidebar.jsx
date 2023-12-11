@@ -18,10 +18,10 @@ import React, { useState, useMemo } from "react";
 import { SlLogout } from "react-icons/sl";
 
 const menuItems = [
-  { id: 2, label: "Product Lists", icon: MdProductionQuantityLimits, link: "/posts" },
-  { id: 3, label: "Create Products ", icon: CiEdit, link: "/users" },
-  { id: 4, label: "Orders", icon: CiUser, link: "/tutorials" },
-  {id:5,label:"Discount",icon:MdOutlineDiscount,link:"/cupon"}
+  { id: 2, label: "Product Lists", icon: MdProductionQuantityLimits, link: "/admin/products" },
+  { id: 3, label: "Create Products ", icon: CiEdit, link: "/admin/create" },
+  { id: 4, label: "Orders", icon: CiUser, link: "/admin/orders" },
+  {id:5,label:"Discount",icon:MdOutlineDiscount,link:"/admin/discount"}
 ];
 
 const Sidebar = () => {
