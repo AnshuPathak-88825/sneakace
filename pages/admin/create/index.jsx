@@ -9,23 +9,16 @@ const Create = () => {
     const [addFile, removeFile, selectedFiles] = useFileSelection();
     const [productName, setProductName] = useState("");
     const [productNumber, setProductNumber] = useState("");
-    const [productSize, setProductSize] = useState([]);
-    const [productPattern, setProductPattern] = useState([]);
-    const [productColor, setProductColor] = useState([]);
+    const [productSize, setProductSize] = useState("");
+    const [productPattern, setProductPattern] = useState("");
+    const [productColor, setProductColor] = useState("");
     const [productShortDescription, setProductShortDescription] = useState("");
     const [productLongDescription, setProductLongDescription] = useState("");
-    const [productCategory, setProductCategory] = useState([]);
+    const [productCategory, setProductCategory] = useState("");
     const [productQuantity, setProductQuantity] = useState("");
     const [productPrice, setProductPrice] = useState("");
-
-    const handleEnter = (e, setState, input) => {
-        if (e.key === "Enter") {
-            if (e.target.value === "") {
-                return;
-            }
-            setState((prevData) => [...prevData, e.target.value]);
-        }
-    };
+    const [variation,setvariation]=useState([]);
+    
     const delete_tag = (setState, e, array) => {
         const temp = array.filter((value) => value !== e);
         setState(temp);
@@ -35,43 +28,38 @@ const Create = () => {
         const product = {
             productName,
             productNumber,
-            productSize,
-            productPattern,
-            productColor,
+          
             productShortDescription,
             productLongDescription,
-            productCategory,
             productQuantity,
             productPrice,
-            productImage: selectedFiles,
+            variation
         };
 
         console.log("Form submitted with data:", product);
     };
-
+    const handleVariation = () => {
+        const newVariation = {
+            productSize,
+            productColor,
+            productCategory,
+            productPattern,
+            productImage: selectedFiles,
+        };
+    
+        setvariation((prevVariations) => [...prevVariations, newVariation]);
+    };
     return (
         <div className="flex flex-col h-full bg-white text-black">
             <div className="h-full flex flex-row justify-start">
                 <Sidebar className="static " />
-                <div className="bg-white flex-1 p-4 text-black">
-                    <div>
+                <div className="bg-white flex-1 p-4  text-black">
+                    <div className="m-10">
                         <h2>Create Products</h2>
                         <h3 className="text-2xl text-teal-500">Create new product here</h3>
                     </div>
-                    <div className="flex flex-row justify-evenly w-3/4">
-                        <div className="w-1/2 p-4 font-medium relative top-10 left-2 ">
-                            Product Image
-                        </div>
-                        <div className="w-3/4 p-4">
-                            <Card
-                                style={{ margin: "auto" }}
-                                actions={[<Button type="primary">Submit</Button>]}
-                            >
-                                <DragAndDrop addFile={addFile} removeFile={removeFile} />
-                            </Card>
-                        </div>
-                    </div>
-                    <div className="mb-4 flex items-center">
+
+                    <div className="mb-4 flex items-center ">
                         <label className="relative left-5 font-medium  w-1/4">
                             Product Name/Title
                         </label>
@@ -93,104 +81,7 @@ const Create = () => {
                             onChange={(e) => setProductNumber(e.target.value)}
                         />
                     </div>
-                    <div className="mb-4 flex items-center">
-                        <label className="relative left-5 font-medium  w-1/4">
-                            Product Size
-                        </label>
 
-                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
-                            <div className="flex flex-row  flex-wrap ">
-
-                                {productSize.map((s) => {
-                                    return (
-                                        <div key={s} className="flex flex-row  bg-gray-300 m-1 p-1 ">
-                                            <span className=" flex items-center justify-between">
-                                                <span>{s}</span>
-                                                <div onClick={(e) => { delete_tag(setProductSize, s, productSize) }} className="bg-gray-400 text-lg m-1 cursor-pointer" >
-                                                    <IoClose />
-                                                </div>
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-
-                            </div>
-                            <input
-
-                                className="appearance-none peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
-                                type="text"
-                                placeholder="Pattern (Write and press enter)"
-                                onKeyDown={(e) =>
-                                    handleEnter(e, setProductSize, productSize)
-                                }
-                            />
-                        </div>
-                    </div>
-                    <div className="mb-4 flex items-center">
-                        <label className="relative left-5 font-medium  w-1/4">
-                            Product Pattern
-                        </label>
-                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
-                            <div className="flex flex-row  flex-wrap ">
-
-                                {productPattern.map((s, index) => {
-                                    return (
-                                        <div key={index} className="flex flex-row  bg-gray-300 m-1 p-1 ">
-                                            <span className=" flex items-center justify-between">
-                                                <span>{s}</span>
-                                                <div className="bg-gray-400 text-lg m-1 cursor-pointer" onClick={(e) => delete_tag(setProductPattern, s, productPattern)}>
-                                                    <IoClose />
-                                                </div>
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-
-                            </div>
-                            <input
-
-                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
-                                type="text"
-                                placeholder="Pattern (Write and press enter)"
-                                onKeyDown={(e) =>
-                                    handleEnter(e, setProductPattern, productPattern)
-                                }
-                            />
-                        </div>
-                    </div>
-                    <div className="mb-4 flex items-center">
-                        <label className="relative left-5 font-medium  w-1/4">
-                            Product Colour
-                        </label>
-
-                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
-                            <div className="flex flex-row  flex-wrap ">
-
-                                {productColor.map((s) => {
-                                    return (
-                                        <div key={s} className="flex flex-row  bg-gray-300 m-1  p-1">
-                                            <span className=" flex items-center justify-between">
-                                                <span>{s}</span>
-                                                <div className="bg-gray-400 text-lg m-1 cursor-pointer" onClick={(e) => { delete_tag(setProductColor, s, productColor) }}>
-                                                    <IoClose />
-                                                </div>
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-
-                            </div>
-                            <input
-
-                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
-                                type="text"
-                                placeholder="Pattern (Write and press enter)"
-                                onKeyDown={(e) =>
-                                    handleEnter(e, setProductColor, productColor)
-                                }
-                            />
-                        </div>
-                    </div>
                     <div className="mb-4 flex items-center">
                         <label className="relative left-5 font-medium  w-1/4">
                             Product Short Description
@@ -211,40 +102,7 @@ const Create = () => {
                             onChange={(e) => setProductLongDescription(e.target.value)}
                         />
                     </div>
-                    <div className="mb-4 flex items-center">
-                        <label className="relative left-5 font-medium  w-1/4">
-                            Product Category
-                        </label>
 
-                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
-                            <div className="flex flex-row  flex-wrap  ">
-
-                                {productCategory.map((s) => {
-                                    return (
-                                        <div key={s} className="flex flex-row  bg-gray-300 m-1 p-1 ">
-                                            <span className=" flex items-center justify-between">
-                                                <span>{s}</span>
-                                                <div className="bg-gray-400 text-lg m-1 cursor-pointer" onClick={(e) => { delete_tag(setProductCategory, s, productCategory) }}>
-                                                    <IoClose />
-                                                </div>
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-
-                            </div>
-                            <input
-
-                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
-                                type="text"
-                                placeholder="Pattern (Write and press enter)"
-                                onKeyDown={(e) =>
-                                    handleEnter(e, setProductCategory, productCategory)
-                                }
-                            />
-                        </div>
-
-                    </div>
                     <div className="mb-4 flex items-center">
                         <label className="relative left-5 font-medium  w-1/4">
                             Product Quantity
@@ -272,6 +130,91 @@ const Create = () => {
                                 )
                             }
                         />
+                    </div>
+
+                    <div className="flex flex-row justify-evenly w-3/4">
+                        <div className="w-1/2 p-4 font-medium relative top-10 left-2 ">
+                            Product Image
+                        </div>
+                        <div className="w-3/4 p-4">
+                            <Card
+                                style={{ margin: "auto" }}
+                            >
+                                <DragAndDrop addFile={addFile} removeFile={removeFile} />
+                            </Card>
+                        </div>
+                    </div>
+                    <div className="mb-4 flex items-center">
+                        <label className="relative left-5 font-medium  w-1/4">
+                            Product Size
+                        </label>
+
+                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
+                           
+                            <input
+
+                                className="appearance-none peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
+                                type="text"
+                                placeholder="Product Size (Write and press enter)"
+                                onChange={(e) => setProductSize(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="mb-4 flex items-center">
+                        <label className="relative left-5 font-medium  w-1/4">
+                            Product Pattern
+                        </label>
+                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
+                          
+                            <input
+
+                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
+                                type="text"
+                                placeholder="Product Pattern (Write and press enter)"
+                                onChange={(e) => setProductPattern(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="mb-4 flex items-center">
+                        <label className="relative left-5 font-medium  w-1/4">
+                            Product Colour
+                        </label>
+
+                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
+                          
+                            <input
+
+                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
+                                type="text"
+                                placeholder="Product Colour (Write and press enter)"
+                                onChange={(e) => setProductColor(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="mb-4 flex items-center">
+                        <label className="relative left-5 font-medium  w-1/4">
+                            Product Category
+                        </label>
+
+                        <div className="flex flex-col flex-wrap 2 max-w-xl ">
+                           
+                            <input
+
+                                className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
+                                type="text"
+                                placeholder="Product Category (Write and press enter)"
+                                onChange={(e) => setProductCategory(e.target.value)}
+                            />
+                        </div>
+
+                    </div>
+                    <div className="mb-4 flex items-center relative left-3 justify-center " >
+                        <button
+                            className="ml-2 p-2 bg-blue-500 text-white rounded-md transition-all	delay-350 ease-in-out hover:bg-teal-500"
+                            onClick={handleVariation}
+                        >
+                            Add variation
+                        </button>
                     </div>
                     <div className="mb-4 flex items-center relative left-3 ">
                         <button
