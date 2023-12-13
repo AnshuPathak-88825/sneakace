@@ -49,7 +49,7 @@ const ProductDetail = ({ProductVisible,setProductVisible}) => {
             <RxCross2 />
           </button>
         </div>
-        <div className="border border-grey-300 border-solid border"></div>
+        <div className="border-grey-300 border-solid border"></div>
 
         <div className="flex-1">
           <div className="max-w-full mx-auto flex flex-col lg:flex-row p-4 lg:p-8 bg-white rounded-lg">
