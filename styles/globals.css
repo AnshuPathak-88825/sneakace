@@ -19,7 +19,14 @@
   font-family: sfpro;
   src: url(../public/fonts/SFPRODISPLAYREGULAR.OTF);
 }
-
+@font-face {
+  font-family: Poppins_light;
+  src: url(../public/fonts/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: Poppins_bold;
+  src: url(../public/fonts/Poppins-Bold.ttf);
+}
 @layer base {
   body {
     @apply bg-background text-primary

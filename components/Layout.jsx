@@ -11,8 +11,11 @@ const Layout = ({ children, title_tag }) => {
   const isHome = pathname === "/";
   const isLogin = pathname === "/login";
   const isProducts = pathname === "/products";
-  const [isLoading, setIsLoading] = useState(isHome);
   const isAdmin = pathname.startsWith("/admin");
+  const isCart = pathname === "/cart";
+  const isMyAccount = pathname === "/my_account";
+  const isRegister = pathname === "/register"; // New line for register page
+  const [isLoading, setIsLoading] = useState(isHome);
 
   useEffect(() => {
     if (isLoading) {
@@ -26,19 +29,17 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      {isLoading && (isHome || isLogin || isProducts) && (
+      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart || isMyAccount || isRegister) && (
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {(isHome || isAdmin || isLogin || isProducts) && (
+      {(isHome || isAdmin || isLogin || isProducts || isCart || isMyAccount || isRegister) && (
         <div className="flex flex-col min-h-screen">
           {isHome && <Navbar />}
           <main className="flex-grow">{children}</main>
           {isHome && <Footer />}
         </div>
       )}
-
-      
     </>
   );
 };

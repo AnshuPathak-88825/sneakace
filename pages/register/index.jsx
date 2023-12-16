@@ -37,7 +37,7 @@ const Login = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-5 lg:gap-5 justify-center mt-5 lg:mt-[44px]">
-            <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg">
+            <div className="flex items-center gap-3 px-10 py-2 w-[200px] lg:w-[274px] border rounded-lg cursor-pointer">
               <FcGoogle size={30} />
               <p className="text-md">Google</p>
             </div>

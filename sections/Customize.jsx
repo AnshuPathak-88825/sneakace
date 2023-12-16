@@ -4,7 +4,7 @@ const Customize = () => {
   return (
     <div className="w-full p-3 lg:p-10">
       <div className="flex flex-col gap-3 items-center justify-center mt-5">
-        <h2 className="tracking-wider text-secondary text-center">
+        <h2 className="tracking-wider text-secondary text-center font-Poppins_bold_light ">
           ADD YOUR MAGIC TOUCH
         </h2>
       </div>
@@ -13,14 +13,14 @@ const Customize = () => {
         <Slider />
       </div>
 
-      <div className="container mx-auto flex flex-col gap-10 items-center justify-center text-center">
+      <div className="container mx-auto font-bodyContent flex flex-col gap-10 items-center justify-center text-center">
         <p>
           When all that inspiration goes into your shoe design, anything feels
           possible. Voilà! Try your hand at making that so you lace with
           SneakAce&apos;s co-creation service.
         </p>
 
-        <button className="w-[200px] py-4 rounded-full bg-primary text-background text-lg font-semibold transition-transform active:scale-95 mb-3 hover:opacity-75">
+        <button className="w-[200px] py-4 rounded-full bg-primary text-background text-lg font-semibold font-Poppins_light transition-transform active:scale-95 mb-3 hover:opacity-75">
           Customize
         </button>
       </div>

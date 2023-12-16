@@ -13,6 +13,8 @@ module.exports = {
         bodyContent: "sfpro",
         bannerHeading: "staatliches",
         loginContent: "Crimson Text",
+        Poppins_light:"Poppins light",
+        Poppins_bold:"Poppins bold"
       },
       colors: {
         background: "#000",
