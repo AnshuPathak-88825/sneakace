@@ -1,7 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
+
 import img from "../../public/assets/images/shoe2.jpg"
 const Wishlist = () => {
+    const iconStyle = {
+        cursor: "pointer",
+        color: "black",
+      };
   return <div className="text-black bg-white w-full h-auto my-24 lg:px-48  flex justify-center">
     <div className="px-12 py-12 bg-white w-full flex flex-col">
         <div className="text-3xl text-white">
@@ -29,7 +35,9 @@ const Wishlist = () => {
                 <div className="w-1/6 flex p-4 items-center justify-center">
                     €3.10€2.79</div>
                 <div className="w-1/6 flex p-4 items-center justify-center">ADD TO CART</div>
-                <div className="w-1/6 flex p-4 items-center justify-center">ACTION</div>
+                <div className="w-1/6 flex p-4 items-center justify-center">
+                <AiOutlineDelete size={40} style={iconStyle} /> 
+                </div>
             </div>)
             })
         }

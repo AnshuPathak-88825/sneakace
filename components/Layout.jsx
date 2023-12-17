@@ -38,9 +38,9 @@ const Layout = ({ children, title_tag }) => {
 
       {(isHome || isAdmin || isLogin || isProducts || isCart || isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
-          {(isHome || isWishlist) && <Navbar />}
+          {(isHome || isWishlist || isCart) && <Navbar />}
           <main className="flex-grow">{children}</main>
-          {(isHome || isWishlist) && <Footer />}
+          {(isHome || isWishlist || isCart) && <Footer />}
         </div>
       )}
     </>
