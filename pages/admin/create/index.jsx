@@ -115,7 +115,7 @@ const Create = () => {
       <div className="h-full flex flex-row justify-start">
         <Sidebar className="static " />
         <div className="bg-white flex-1 p-4  text-black">
-          <div className="m-10">
+          <div className="mb-10 relative ">
             <h2>Create Products</h2>
             <h3 className="text-2xl text-teal-500">Create new product here</h3>
           </div>

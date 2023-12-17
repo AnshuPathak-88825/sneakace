@@ -13,8 +13,11 @@ const Layout = ({ children, title_tag }) => {
   const isProducts = pathname === "/products";
   const isAdmin = pathname.startsWith("/admin");
   const isCart = pathname === "/cart";
+  const isWishlist = pathname === "/wishlist";
+
   const isMyAccount = pathname === "/my_account";
-  const isRegister = pathname === "/register"; // New line for register page
+  const isRegister = pathname === "/register";
+  const isProductDetails = pathname.startsWith("/products/"); // Check for dynamic route
   const [isLoading, setIsLoading] = useState(isHome);
 
   useEffect(() => {
@@ -29,15 +32,15 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart || isMyAccount || isRegister) && (
+      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart|| isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {(isHome || isAdmin || isLogin || isProducts || isCart || isMyAccount || isRegister) && (
+      {(isHome || isAdmin || isLogin || isProducts || isCart || isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
-          {isHome && <Navbar />}
+          {(isHome || isWishlist) && <Navbar />}
           <main className="flex-grow">{children}</main>
-          {isHome && <Footer />}
+          {(isHome || isWishlist) && <Footer />}
         </div>
       )}
     </>
