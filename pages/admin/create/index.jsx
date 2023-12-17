@@ -208,55 +208,81 @@ const Create = () => {
               Product Size
             </label>
 
-            <div className="flex flex-col flex-wrap 2 max-w-xl ">
+            <input
+              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
+              type="text"
+              placeholder="Product Size (Write and press enter)"
+              onChange={(e) => setProductSize(e.target.value)}
+            />
+            {/* <div className="flex flex-col flex-wrap 2 max-w-xl ">
               <input
                 className="appearance-none peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
                 type="text"
                 placeholder="Product Size (Write and press enter)"
                 onChange={(e) => setProductSize(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
               Product Pattern
             </label>
-            <div className="flex flex-col flex-wrap 2 max-w-xl ">
+            <input
+              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
+              type="text"
+              placeholder="Product Pattern (Write and press enter)"
+              onChange={(e) => setProductPattern(e.target.value)}
+            />
+            {/* <div className="flex flex-col flex-wrap 2 max-w-xl ">
               <input
                 className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
                 type="text"
                 placeholder="Product Pattern (Write and press enter)"
                 onChange={(e) => setProductPattern(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
               Product Colour
             </label>
 
-            <div className="flex flex-col flex-wrap 2 max-w-xl ">
+            <input
+              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
+              type="text"
+              placeholder="Product Colour (Write and press enter)"
+              onChange={(e) => setProductColor(e.target.value)}
+            />
+
+            {/* <div className="flex flex-col flex-wrap 2 max-w-xl ">
               <input
                 className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
                 type="text"
                 placeholder="Product Colour (Write and press enter)"
                 onChange={(e) => setProductColor(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
               Product Category
             </label>
 
-            <div className="flex flex-col flex-wrap 2 max-w-xl ">
+            <input
+              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
+              type="text"
+              placeholder="Product Category (Write and press enter)"
+              onChange={(e) => setProductCategory(e.target.value)}
+            />
+
+            {/* <div className="flex flex-col flex-wrap 2 max-w-xl ">
               <input
                 className=" peer  ml-2 mt-1 p-2 border border-gray-300 rounded-md w-full min-w-full		 focus:outline-none focus:ring focus:border-blue-300"
                 type="text"
                 placeholder="Product Category (Write and press enter)"
                 onChange={(e) => setProductCategory(e.target.value)}
               />
-            </div>
+            </div> */}
           </div>
           <div className="mb-4 flex items-center relative left-3 justify-center ">
             <button

@@ -70,6 +70,7 @@ const Sidebar = () => {
       onMouseLeave={onMouseOver}
       style={{ transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s" }}
     >
+      <div className="">
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center p-1 gap-4 ">
@@ -150,7 +151,7 @@ const Sidebar = () => {
       <div
         className={`${getNavItemClasses(
           {}
-        )} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500 mt-[90vh]`}
+        )} px-3 py-4 transition duration-300 ease-in-out hover:text-yellow-500  mt-24` }
       >
         <div style={{ width: "2.5rem" }}>
           <SlLogout />
@@ -160,6 +161,7 @@ const Sidebar = () => {
             Logout
           </span>
         )}
+      </div>
       </div>
     </div>
   );

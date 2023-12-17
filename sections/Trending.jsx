@@ -8,6 +8,15 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import TabButton from "../components/TabButton";
 import ProductDetail from "../sections/ProductDetail"
 import Link from "next/link";
+
+
+// 'use client'; // For Next JS 13 app router
+
+import dynamic from 'next/dynamic';
+
+const ScrollCarousel = dynamic(() => import('../components/ScrollCarasoul'), { ssr: false });
+
+
 const Trending = () => {
   const [ProductVisible, setProductVisible] = useState(false);
   const slideLeft = () => {
@@ -183,6 +192,14 @@ const Trending = () => {
           Sale Items
         </TabButton>
       </div>
+
+
+      {/* Scroll you have to delete the below div to delete it */}
+      <div className="demo bg-[#FEF9EC] p-4 rounded-xl mt-5">
+          <ScrollCarousel />
+      </div>
+
+
       <div className="relative flex items-center justify-center bg-[#FEF9EC] p-3 rounded-xl mt-5">
         <MdChevronLeft
           className="opacity-50 cursor-pointer hover:opacity-100 text-background"

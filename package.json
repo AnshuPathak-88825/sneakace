@@ -26,6 +26,7 @@
     "react-rater": "^6.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-scroll": "^1.9.0",
+    "scroll-carousel-react": "^1.0.0",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
