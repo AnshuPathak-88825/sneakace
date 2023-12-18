@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URL);
-mongoose.Promise = global.Promise;
-
 const productSchema = new mongoose.Schema({
   productName: {
     type: String,
@@ -55,6 +52,7 @@ const productSchema = new mongoose.Schema({
   ],
 });
 
-const Product = mongoose.model("Product", productSchema);
+const Product =
+  mongoose.models.Product || mongoose.model("Product", productSchema);
 
 module.exports = Product;
