@@ -13,6 +13,8 @@ const Layout = ({ children, title_tag }) => {
   const isProducts = pathname === "/products";
   const isAdmin = pathname.startsWith("/admin");
   const isCart = pathname === "/cart";
+  const isCheckout = pathname === "/checkout";
+
   const isWishlist = pathname === "/wishlist";
 
   const isMyAccount = pathname === "/my_account";
@@ -32,15 +34,15 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart|| isWishlist || isMyAccount || isRegister || isProductDetails) && (
+      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart|| isWishlist || isMyAccount || isRegister || isCheckout || isProductDetails) && (
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {(isHome || isAdmin || isLogin || isProducts || isCart || isWishlist || isMyAccount || isRegister || isProductDetails) && (
+      {(isHome || isAdmin || isLogin || isProducts || isCart || isCheckout || isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
-          {(isHome || isWishlist || isCart) && <Navbar />}
+          {(isHome || isWishlist || isCheckout || isCart) && <Navbar />}
           <main className="flex-grow">{children}</main>
-          {(isHome || isWishlist || isCart) && <Footer />}
+          {(isHome || isWishlist|| isCheckout || isCart) && <Footer />}
         </div>
       )}
     </>
