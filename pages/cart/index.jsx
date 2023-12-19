@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import React from "react";
 import Image from "next/image";
 import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
@@ -176,9 +176,12 @@ const Cart = () => {
                 <div>$400</div>
               </div>
               <div>
+                <Link href="/checkout">
                 <button className="w-full bg-cyan-400 py-4 rounded-full text-2xl ">
                   Proceed to Checkout
                 </button>
+                </Link>
+                
               </div>
             </div>
           </div>

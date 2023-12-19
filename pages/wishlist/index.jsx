@@ -1,50 +1,73 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
 
-import img from "../../public/assets/images/shoe2.jpg"
+import img from "../../public/assets/images/shoe2.jpg";
 const Wishlist = () => {
-    const iconStyle = {
-        cursor: "pointer",
-        color: "black",
-      };
-  return <div className="text-black bg-white w-full h-auto my-24 lg:px-48  flex justify-center">
-    <div className="px-12 py-12 bg-white w-full flex flex-col">
-        <div className="text-3xl text-white">
-           Your wishlist items
-        </div>
+  const iconStyle = {
+    cursor: "pointer",
+    color: "black",
+  };
+  return (
+    <div className="text-black bg-white w-full h-auto my-24 lg:px-48  flex justify-center">
+      <div className="px-12 py-12 bg-white w-full flex flex-col">
+        <div className="text-3xl text-white">Your wishlist items</div>
         <div className="flex flex-row mt-6 w-full bg-slate-200	 ">
-            <div className="w-1/6 flex py-4 justify-center  ">IMAGE</div>
-            <div className="w-1/3 flex py-4 justify-center ">PRODUCT NAME</div>
-            <div className="w-1/6 flex py-4 justify-center ">UNIT PRICE</div>
-            <div className="w-1/6 flex py-4 justify-center ">ADD TO CART</div>
-            <div className="w-1/6 flex py-4 justify-center ">ACTION</div>
+          <div className="w-1/6 flex py-4 justify-center  ">IMAGE</div>
+          <div className="w-1/3 flex py-4 justify-center ">PRODUCT NAME</div>
+          <div className="w-1/6 flex py-4 justify-center ">UNIT PRICE</div>
+          <div className="w-1/6 flex py-4 justify-center ">ADD TO CART</div>
+          <div className="w-1/6 flex py-4 justify-center ">ACTION</div>
         </div>
-        {
-            [1,2,3,4,5,6].map((index)=>{
-                return (<div key={index}  className="flex flex-row mt-6 bg-white w-full">
-                <div className="w-1/6 flex p-4 justify-center  ">
+        {[1, 2, 3, 4, 5, 6].map((index) => {
+          return (
+            <div key={index} className="flex flex-row mt-6 bg-white w-full">
+              <div className="w-1/6 flex p-4 justify-center  ">
                 <Image
                   src={img}
                   alt={"Not found"}
                   className="w-full rounded-2xl  inline-block  cursor-pointer "
                 />
-                </div>
-                <div className="w-1/3 flex p-4 items-center justify-center ">
-                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut veritatis fuga labore officiis! Corporis distinctio repellendus asperiores.</div>
-                <div className="w-1/6 flex p-4 items-center justify-center">
-                    €3.10€2.79</div>
-                <div className="w-1/6 flex p-4 items-center justify-center">ADD TO CART</div>
-                <div className="w-1/6 flex p-4 items-center justify-center">
-                <AiOutlineDelete size={40} style={iconStyle} /> 
-                </div>
-            </div>)
-            })
-        }
-
-
+              </div>
+              <div className="w-1/3 flex p-4 items-center justify-center ">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
+                veritatis fuga labore officiis! Corporis distinctio repellendus
+                asperiores.
+              </div>
+              <div className="w-1/6 flex p-4 items-center justify-center">
+                €3.10€2.79
+              </div>
+              <div className="w-1/6 flex p-4 items-center justify-center">
+                ADD TO CART
+              </div>
+              <div className="w-1/6 flex p-4 items-center justify-center">
+                <AiOutlineDelete size={40} style={iconStyle} />
+              </div>
+            </div>
+          );
+        })}
+        ;
+        <div className="bg-white text-black h-auto mt-0">
+          <div className="flex justify-between py-5 px-12 lg:px-24 bg-white">
+            <div className="w-auto border-2 rounded-[50px] bg-slate-300">
+              <Link href="products">
+              <button className="text-xl lg:text-2xl  px-12 lg:px-20 py-5">
+                Continue Shopping
+              </button>
+              </Link>
+              
+            </div>
+            <div className="w-auto border-2 rounded-[50px] bg-slate-300">
+              <button className="text-xl lg:text-2xl  px-12 lg:px-20 py-5">
+                Clear Shopping Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>;
+  );
 };
 
 export default Wishlist;
