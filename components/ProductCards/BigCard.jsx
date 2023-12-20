@@ -11,7 +11,7 @@ const BigCard = ({ img, label, desc, rating, price }) => {
       <div className="group relative overflow-hidden mt-2 rounded-lg">
         <Image
           className={`cursor-pointer w-full h-full`}
-          src={img}
+          src={img[0]}
           alt={label}
           width={200}
           height={200}
@@ -32,9 +32,8 @@ const BigCard = ({ img, label, desc, rating, price }) => {
       <div className={`py-2 space-y-2 cursor-pointer`}>
         <p className="text-3xl">{label}</p>
         <div className="flex flex-row justify-between items-center">
-        <p className="text-xl">{price}</p>
+          <p className="text-xl">{price}</p>
           <Stars stars={rating} />
-          
         </div>
 
         <p className="text-lg">{desc}</p>

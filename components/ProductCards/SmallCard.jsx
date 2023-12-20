@@ -10,7 +10,7 @@ const SmallCard = ({ img, label, desc, rating, price }) => {
       <div className="group relative overflow-hidden mt-2 rounded-lg">
         <Image
           className={`cursor-pointer w-full h-full`}
-          src={img}
+          src={img[0]}
           alt={label}
           width={200}
           height={200}

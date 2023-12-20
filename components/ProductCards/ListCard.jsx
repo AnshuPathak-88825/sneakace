@@ -11,7 +11,7 @@ const ListCard = ({ img, label, desc, rating, price }) => {
         <div className=" min-w-[120px]">
           <Image
             className={` cursor-pointer p-5 rounded-lg`}
-            src={img}
+            src={img[0]}
             alt={label}
             width={140}
             height={140}
