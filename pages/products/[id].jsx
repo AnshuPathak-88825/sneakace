@@ -8,50 +8,24 @@ import { AiOutlineCopy } from "react-icons/ai";
 import TabButton from "../../components/TabButton";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Image from "next/image";import { useRouter } from "next/router";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import axios from "axios";
-import { AuthContextProvider } from "../../context/AuthContext";
+import { AuthContextProvider, UserAuth } from "../../context/AuthContext";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
-  const [selectedColor, setSelectedColor] = useState("W"); // Corrected default color
-  const [selectedPattern, setSelectedPattern] = useState("W"); // Corrected default pattern
-
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const handleSizeChange = (size) => {
-    setSelectedSize(size);
-  };
-
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
-  };
-
-  const handlePatternChange = (pattern) => {
-    setSelectedPattern(pattern);
-  };
-
-  const addToCart = () => {
-    console.log(
-      `Added ${quantity} items of size ${selectedSize}, color ${selectedColor}, pattern ${selectedPattern} to the cart`
-    );
-  };
+  const [selectedColor, setSelectedColor] = useState("W");
+  const [selectedPattern, setSelectedPattern] = useState("W");
   const [productData, setProductData] = useState();
   const router = useRouter();
   const { id } = router.query;
-  // const { user } = useContext(AuthContextProvider);
+
+  const { user } = UserAuth();
 
   useEffect(() => {
-    // console.log(user);
+    console.log(user);
     const getProduct = async () => {
       try {
         const response = await axios.get(
@@ -93,6 +67,28 @@ const ProductDetails = () => {
     } catch (error) {
       console.error("Error adding product to cart:", error.message);
     }
+  };
+
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handlePatternChange = (pattern) => {
+    setSelectedPattern(pattern);
   };
 
   const [count, setCount] = useState(1);
@@ -185,26 +181,13 @@ const ProductDetails = () => {
           </div>
           <div className="lg:w-1/2 flex-1 pl-0   p-5">
             <h2 className="text-lg lg:text-2xl text-yellow-500 font-bold mb-4">
-              Product Name
+              {productData && productData.productName}
             </h2>
             <div className="flex items-center mb-4 ">
               <span className="text-gray-700 mr-2">Price:</span>
               <span className="text-lg lg:text-xl font-bold text-yellow-500">
                 $99.99
               </span>
-
-          <div className="flex-[1] py-3">
-            {/* title */}
-            <div className="text-[34px] font-semibold">
-              {productData && productData.productName}
-            </div>
-
-            {/* Price */}
-            <div className="text-lg font-semibold mb-5">$250</div>
-
-            {/* Stars */}
-            <div className="text-lg font-semibold">
-              <FaStar />
             </div>
             <div className="flex items-center mb-4">
               <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
@@ -247,7 +230,9 @@ const ProductDetails = () => {
                 <button
                   onClick={() => handleSizeChange("S")}
                   className={`text-black size-btn ${
-                    selectedSize === "S" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                    selectedSize === "S"
+                      ? "bg-yellow-500 text-white"
+                      : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
                   }  m-1 p-1 transition-all duration-300 ease-in-out`}
                 >
                   S
@@ -255,7 +240,9 @@ const ProductDetails = () => {
                 <button
                   onClick={() => handleSizeChange("M")}
                   className={`text-black size-btn ${
-                    selectedSize === "M" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                    selectedSize === "M"
+                      ? "bg-yellow-500 text-white"
+                      : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
                   }  m-1 p-1 transition-all duration-300 ease-in-out`}
                 >
                   M
@@ -263,7 +250,9 @@ const ProductDetails = () => {
                 <button
                   onClick={() => handleSizeChange("L")}
                   className={`text-black size-btn ${
-                    selectedSize === "L" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                    selectedSize === "L"
+                      ? "bg-yellow-500 text-white"
+                      : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
                   }  m-1 p-1 transition-all duration-300 ease-in-out`}
                 >
                   L
@@ -319,23 +308,11 @@ const ProductDetails = () => {
                   className=" px-2 lg:px-3 py-1 m-1"
                 >
                   +
-            <div className="flex flex-col lg:flex-row items-center gap-3 text-background mt-5">
-              <div className="flex items-center gap-5 bg-slate-50 rounded-sm p-3 text-xl">
-                <button onClick={countDecrease}>-</button>
-                <h3>{count}</h3>
-                <button onClick={countIncrease}>+</button>
-              </div>
-              <div>
-                <button
-                  onClick={addProductToCart}
-                  className="p-3 bg-secondary text-background rounded-sm text-xl"
-                >
-                  ADD TO CART
                 </button>
               </span>
 
               <button
-                onClick={addToCart}
+                onClick={addProductToCart}
                 className=" bg-yellow-500 text-white m-2 px-8 lg:px-6 py-4  hover:bg-yellow-400 focus:outline-none focus:shadow-outline"
               >
                 Add to Cart
