@@ -6,8 +6,42 @@ import { FaStar } from "react-icons/fa";
 import ColorButtons from "../../components/ColorButtons";
 import { AiOutlineCopy } from "react-icons/ai";
 import TabButton from "../../components/TabButton";
-
+import { RxCross2 } from "react-icons/rx";
+import { IoMdHeartEmpty } from "react-icons/io";
+import Image from "next/image";
 const ProductDetails = () => {
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedColor, setSelectedColor] = useState("W"); // Corrected default color
+  const [selectedPattern, setSelectedPattern] = useState("W"); // Corrected default pattern
+
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handlePatternChange = (pattern) => {
+    setSelectedPattern(pattern);
+  };
+
+  const addToCart = () => {
+    console.log(
+      `Added ${quantity} items of size ${selectedSize}, color ${selectedColor}, pattern ${selectedPattern} to the cart`
+    );
+  };
   const [count, setCount] = useState(1);
   const countIncrease = () => {
     setCount(count + 1);
@@ -89,93 +123,147 @@ const ProductDetails = () => {
   ];
 
   return (
-    <div className="w-full md:py-20">
+    <div className="w-full md:py-20 bg-white">
       <TransitionEffect />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
             <ProductCarasoulDetails />
           </div>
-
-          <div className="flex-[1] py-3">
-            {/* title */}
-            <div className="text-[34px] font-semibold">Lorem, ipsum.</div>
-
-            {/* Price */}
-            <div className="text-lg font-semibold mb-5">$250</div>
-
-            {/* Stars */}
-            <div className="text-lg font-semibold">
-              <FaStar />
+          <div className="lg:w-1/2 flex-1 pl-0   p-5">
+            <h2 className="text-lg lg:text-2xl text-yellow-500 font-bold mb-4">
+              Product Name
+            </h2>
+            <div className="flex items-center mb-4 ">
+              <span className="text-gray-700 mr-2">Price:</span>
+              <span className="text-lg lg:text-xl font-bold text-yellow-500">
+                $99.99
+              </span>
             </div>
-
-            {/* Description */}
-            <div className="text-md font-medium text-primary">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore
-              provident corrupti unde ipsum quos maxime fuga ducimus atque culpa
-              voluptatem.
+            <div className="flex items-center mb-4">
+              <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
             </div>
-
-            <hr className="hidden md:block mt-5" />
-
-            <div className="flex flex-col lg:flex-row items-center gap-[30px] mt-5">
-              <div className="flex flex-col items-center lg:items-start gap-3">
-                <h3 className="text-lg">Color</h3>
-                <div className="flex items-center gap-3">
-                  <ColorButtons>White</ColorButtons>
-                  <ColorButtons>Black</ColorButtons>
-                  <ColorButtons>Red</ColorButtons>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center lg:items-start gap-3">
-                <h3 className="text-lg">Pattern</h3>
-                <div className="flex items-center gap-3">
-                  <ColorButtons>Wavy</ColorButtons>
-                  <ColorButtons>Curvy</ColorButtons>
-                  <ColorButtons>Shiny</ColorButtons>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center lg:items-start gap-3">
-                <h3 className="text-lg">Size</h3>
-                <div className="flex items-center gap-3">
-                  <ColorButtons>S</ColorButtons>
-                  <ColorButtons>L</ColorButtons>
-                  <ColorButtons>M</ColorButtons>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center lg:items-start gap-3">
-                <h3 className="text-lg">Aglet</h3>
-                <div className="flex items-center gap-3">
-                  <ColorButtons>White</ColorButtons>
-                  <ColorButtons>Black</ColorButtons>
-                  <ColorButtons>Red</ColorButtons>
-                </div>
-              </div>
+            <div className="text-sm lg:text-base text-gray-600 mb-4 whitespace-normal">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proi
             </div>
+            <div className="border border-grey-300 border-solid border m-3"></div>
 
-            <div className="flex flex-col gap-3 items-center mt-10 bg-slate-50 rounded-xl text-background p-2">
-              <p>Redeem 10% Discount</p>
-              <h3 className="text-lg border border-background p-2 flex items-center justify-between lg:w-[300px] rounded-xl">
-                Sneakace10off{" "}
-                <span>
-                  <AiOutlineCopy />
-                </span>
-              </h3>
-            </div>
+            <div className="mb-4 flex flex-row justify-around flex-wrap">
+              <span className="mb-4">
+                <div className="text-black mr-2 font-medium	">Colour</div>
+                <button
+                  onClick={() => handleColorChange("W")}
+                  className={`text-black size-btn  ${
+                    selectedColor === "W" && "selected"
+                  } bg-white m-1 p-2 rounded-full border-2 hover:border-black	`}
+                ></button>
+                <button
+                  onClick={() => handleColorChange("B")}
+                  className={`text-black size-btn ${
+                    selectedColor === "B" && "selected"
+                  } bg-black m-1 p-2 rounded-full border-2 hover:border-black	 `}
+                ></button>
+                <button
+                  onClick={() => handleColorChange("R")}
+                  className={`text-black size-btn ${
+                    selectedColor === "R" && "selected"
+                  } bg-red-600 m-1 p-2  rounded-full border-2 hover:border-black	 `}
+                ></button>
+              </span>
 
-            <div className="flex flex-col lg:flex-row items-center gap-3 text-background mt-5">
-              <div className="flex items-center gap-5 bg-slate-50 rounded-sm p-3 text-xl">
-                <button onClick={countDecrease}>-</button>
-                <h3>{count}</h3>
-                <button onClick={countIncrease}>+</button>
-              </div>
-              <div>
-                <button className="p-3 bg-secondary text-background rounded-sm text-xl">
-                  ADD TO CART
+              <span className="mb-4">
+                <div className="text-black mr-2 font-medium">Size</div>
+                <button
+                  onClick={() => handleSizeChange("S")}
+                  className={`text-black size-btn ${
+                    selectedSize === "S" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                  }  m-1 p-1 transition-all duration-300 ease-in-out`}
+                >
+                  S
                 </button>
+                <button
+                  onClick={() => handleSizeChange("M")}
+                  className={`text-black size-btn ${
+                    selectedSize === "M" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                  }  m-1 p-1 transition-all duration-300 ease-in-out`}
+                >
+                  M
+                </button>
+                <button
+                  onClick={() => handleSizeChange("L")}
+                  className={`text-black size-btn ${
+                    selectedSize === "L" ? "bg-yellow-500 text-white" : "bg-gray-200 hover:bg-yellow-500 hover:text-white"
+                  }  m-1 p-1 transition-all duration-300 ease-in-out`}
+                >
+                  L
+                </button>
+              </span>
+
+              <span className="mb-4 ">
+                <div className="text-black mr-2 font-medium	">Pattern</div>
+                <button
+                  onClick={() => handlePatternChange("W")}
+                  className={`text-black size-btn  bg-gray-200  m-1 p-1 ${
+                    selectedPattern === "W"
+                      ? "bg-yellow-500 hover:bg-yellow-500 text-white"
+                      : "hover:bg-yellow-500 hover:text-white"
+                  } transition-all duration-500 ease-in-out`}
+                >
+                  WAXY
+                </button>
+                <button
+                  onClick={() => handlePatternChange("C")}
+                  className={`text-black size-btn  bg-gray-200  m-1 p-1 ${
+                    selectedPattern === "C"
+                      ? "bg-yellow-500 hover:bg-yellow-500 text-white"
+                      : "hover:bg-yellow-500 hover:text-white"
+                  } transition-all duration-300 ease-in-out`}
+                >
+                  CURVY
+                </button>
+                <button
+                  onClick={() => handlePatternChange("S")}
+                  className={`text-black size-btn  bg-gray-200 m-1 p-1 ${
+                    selectedPattern === "S"
+                      ? "bg-yellow-500 hover:bg-yellow-500 text-white"
+                      : "hover:bg-yellow-500 hover:text-white"
+                  } transition-all duration-300 ease-in-out`}
+                >
+                  SHINNY
+                </button>
+              </span>
+            </div>
+
+            <div className="flex items-center mb-4 justify-center justify-around flex-wrap">
+              <span className="text-gray-700 border py-2 m-2">
+                <button
+                  onClick={decrementQuantity}
+                  className=" px-2 lg:px-3 py-1 m-1"
+                >
+                  -
+                </button>
+                <span className="text-gray-500 m-1">{quantity}</span>
+                <button
+                  onClick={incrementQuantity}
+                  className=" px-2 lg:px-3 py-1 m-1"
+                >
+                  +
+                </button>
+              </span>
+
+              <button
+                onClick={addToCart}
+                className=" bg-yellow-500 text-white m-2 px-8 lg:px-6 py-4  hover:bg-yellow-400 focus:outline-none focus:shadow-outline"
+              >
+                Add to Cart
+              </button>
+              <div className="text-gray-700 text-xl p-0 m-3 cursor-pointer">
+                <IoMdHeartEmpty />
               </div>
             </div>
           </div>
@@ -184,17 +272,20 @@ const ProductDetails = () => {
         <div className="flex items-center justify-center gap-5 mt-5">
           <TabButton
             selectTab={() => handleTabChange("Additional Information")}
-            active={tab === "Additional Information"}>
+            active={tab === "Additional Information"}
+          >
             Additional Information
           </TabButton>
           <TabButton
             selectTab={() => handleTabChange("Description")}
-            active={tab === "Description"}>
+            active={tab === "Description"}
+          >
             Description
           </TabButton>
           <TabButton
             selectTab={() => handleTabChange("Reviews")}
-            active={tab === "Reviews"}>
+            active={tab === "Reviews"}
+          >
             Reviews
           </TabButton>
         </div>

@@ -92,7 +92,7 @@ const ProductGrid = () => {
             {gridstate === "small" && (
               <div className="container mx-auto grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 xl:gap-x-8 xl:gap-y-8">
                 {products.map((item, index) => (
-                  <Link href={`/products/${item.id}`} key={index}>
+                  <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
                       <SmallCard
                         img={item.variations && item.variations.length > 0 ? item.variations[0].productImage : ''}
@@ -109,7 +109,7 @@ const ProductGrid = () => {
             {gridstate === "list" && (
               <div className="flex flex-col ">
                 {products.map((item, index) => (
-                  <Link href={`/products/${item.id}`} key={index}>
+                  <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
                       <ListCard
                          img={item.variations && item.variations.length > 0 ? item.variations[0].productImage : ''}
