@@ -1,4 +1,4 @@
-import React, { useState, useTransition } from "react";
+import React, { useContext, useEffect, useState, useTransition } from "react";
 import ProductCarasoulDetails from "../../components/ProductCarasoulDetails";
 import TransitionEffect from "../../components/TransitionEffect";
 import Wrapper from "../../components/Wrapper";
@@ -8,7 +8,10 @@ import { AiOutlineCopy } from "react-icons/ai";
 import TabButton from "../../components/TabButton";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Image from "next/image";
+import Image from "next/image";import { useRouter } from "next/router";
+import axios from "axios";
+import { AuthContextProvider } from "../../context/AuthContext";
+
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -42,6 +45,56 @@ const ProductDetails = () => {
       `Added ${quantity} items of size ${selectedSize}, color ${selectedColor}, pattern ${selectedPattern} to the cart`
     );
   };
+  const [productData, setProductData] = useState();
+  const router = useRouter();
+  const { id } = router.query;
+  // const { user } = useContext(AuthContextProvider);
+
+  useEffect(() => {
+    // console.log(user);
+    const getProduct = async () => {
+      try {
+        const response = await axios.get(
+          `/api/product/getProductById?id=${id}`
+        );
+        if (response.status === 200) {
+          console.log(response.data.data);
+          setProductData(response.data.data);
+        } else {
+          console.error("Error fetching product:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error.message);
+      }
+    };
+
+    if (id) {
+      getProduct();
+    }
+  }, [id]);
+
+  const addProductToCart = async () => {
+    try {
+      const user_id = "user123"; // Replace with the actual user_id
+      const product_id = id;
+
+      const response = await axios.post("/api/cart/addProduct", {
+        user_id,
+        product_id,
+        variationId: "variation_123",
+        quantity: count,
+      });
+
+      if (response.status === 200) {
+        console.log("Product added to cart successfully");
+      } else {
+        console.error("Error adding product to cart:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding product to cart:", error.message);
+    }
+  };
+
   const [count, setCount] = useState(1);
   const countIncrease = () => {
     setCount(count + 1);
@@ -139,6 +192,19 @@ const ProductDetails = () => {
               <span className="text-lg lg:text-xl font-bold text-yellow-500">
                 $99.99
               </span>
+
+          <div className="flex-[1] py-3">
+            {/* title */}
+            <div className="text-[34px] font-semibold">
+              {productData && productData.productName}
+            </div>
+
+            {/* Price */}
+            <div className="text-lg font-semibold mb-5">$250</div>
+
+            {/* Stars */}
+            <div className="text-lg font-semibold">
+              <FaStar />
             </div>
             <div className="flex items-center mb-4">
               <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
@@ -253,6 +319,18 @@ const ProductDetails = () => {
                   className=" px-2 lg:px-3 py-1 m-1"
                 >
                   +
+            <div className="flex flex-col lg:flex-row items-center gap-3 text-background mt-5">
+              <div className="flex items-center gap-5 bg-slate-50 rounded-sm p-3 text-xl">
+                <button onClick={countDecrease}>-</button>
+                <h3>{count}</h3>
+                <button onClick={countIncrease}>+</button>
+              </div>
+              <div>
+                <button
+                  onClick={addProductToCart}
+                  className="p-3 bg-secondary text-background rounded-sm text-xl"
+                >
+                  ADD TO CART
                 </button>
               </span>
 

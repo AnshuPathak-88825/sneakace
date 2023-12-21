@@ -29,6 +29,10 @@ const productSchema = new mongoose.Schema({
 
   variations: [
     {
+      variationId: {
+        type: "String",
+        required: true,
+      },
       productSize: {
         type: String,
         required: true,

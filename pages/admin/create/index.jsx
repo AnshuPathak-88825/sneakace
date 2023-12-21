@@ -18,6 +18,7 @@ const Create = () => {
   const [productCategory, setProductCategory] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [variationId, setVariationId] = useState("");
   const [variations, setvariations] = useState([]);
 
   const delete_tag = (setState, e, array) => {
@@ -78,7 +79,6 @@ const Create = () => {
         setProductPrice("");
         setvariations([]);
         console.log("Product created successfully");
-
       } else {
         // Handle error response
         console.error("Error creating product");
@@ -87,7 +87,7 @@ const Create = () => {
       console.error("Error:", error);
     }
   };
-  
+
   const handleVariation = async () => {
     const variationImages = [];
 
@@ -98,6 +98,7 @@ const Create = () => {
     }
 
     const newVariation = {
+      variationId,
       productSize,
       productColor,
       productCategory,
@@ -110,7 +111,7 @@ const Create = () => {
     setProductCategory("");
     setProductPattern("");
     setProductColor("");
-
+    setVariationId("");
   };
 
   return (
@@ -131,7 +132,7 @@ const Create = () => {
               className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
               type="text"
               value={productName}
-               onChange={(e) => setProductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
             />
           </div>
           <div className="mb-4 flex items-center">
@@ -208,6 +209,19 @@ const Create = () => {
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
+              Variation Id
+            </label>
+
+            <input
+              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
+              type="text"
+              placeholder="Enter Variation Id"
+              onChange={(e) => setVariationId(e.target.value)}
+              value={variationId}
+            />
+          </div>
+          <div className="mb-4 flex items-center">
+            <label className="relative left-5 font-medium  w-1/4">
               Product Size
             </label>
 
@@ -218,7 +232,6 @@ const Create = () => {
               onChange={(e) => setProductSize(e.target.value)}
               value={productSize}
             />
-
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
@@ -231,7 +244,6 @@ const Create = () => {
               value={productPattern}
               onChange={(e) => setProductPattern(e.target.value)}
             />
-
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
@@ -245,8 +257,6 @@ const Create = () => {
               value={productColor}
               onChange={(e) => setProductColor(e.target.value)}
             />
-
-
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
@@ -260,8 +270,6 @@ const Create = () => {
               value={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
             />
-
-
           </div>
           <div className="mb-4 flex items-center relative left-3 justify-center ">
             <button

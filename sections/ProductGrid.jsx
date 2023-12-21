@@ -23,7 +23,7 @@ const ProductGrid = () => {
     const getProducts = async () => {
       try {
         const response = await axios.get("/api/product/getAllProducts");
-        console.log(response.data[1].variations);
+        console.log(response);
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -78,8 +78,16 @@ const ProductGrid = () => {
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
                       <BigCard
-                        img={item.variations && item.variations.length > 0 ? item.variations[0].productImage : ''}
-                        label={item.productName?"helo":variations[0].productImage}
+                        img={
+                          item.variations && item.variations.length > 0
+                            ? item.variations[0].productImage
+                            : ""
+                        }
+                        label={
+                          item.productName
+                            ? item.productName
+                            : variations[0].productImage
+                        }
                         desc={item.productShortDescription}
                         rating={5}
                         price={item.productPrice}
@@ -95,8 +103,14 @@ const ProductGrid = () => {
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
                       <SmallCard
-                        img={item.variations && item.variations.length > 0 ? item.variations[0].productImage : ''}
-                        label={item.productName?"helo":variations[0].productImage}
+                        img={
+                          item.variations && item.variations.length > 0
+                            ? item.variations[0].productImage
+                            : ""
+                        }
+                        label={
+                          item.productName ? "helo" : variations[0].productImage
+                        }
                         desc={item.productShortDescription}
                         rating={5}
                         price={item.productPrice}
@@ -112,11 +126,17 @@ const ProductGrid = () => {
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
                       <ListCard
-                         img={item.variations && item.variations.length > 0 ? item.variations[0].productImage : ''}
-                         label={item.productName?"helo":variations[0].productImage}
-                         desc={item.productShortDescription}
-                         rating={5}
-                         price={item.productPrice}
+                        img={
+                          item.variations && item.variations.length > 0
+                            ? item.variations[0].productImage
+                            : ""
+                        }
+                        label={
+                          item.productName ? "helo" : variations[0].productImage
+                        }
+                        desc={item.productShortDescription}
+                        rating={5}
+                        price={item.productPrice}
                       />
                     </div>
                   </Link>
