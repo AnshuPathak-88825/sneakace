@@ -14,30 +14,26 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn()
-        .then(() => {
-          router.push("/");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      await googleSignIn();
+      if (user) {
+        router.push("/");
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Google Sign In Error:", error);
     }
   };
 
-  const handleEmailSigin = async () => {
+  const handleEmailSignIn = async () => {
     try {
-      await emailSignIn(email, password)
-        .then(() => {
-          console.log("successfully logged in");
-          router.push("/");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      await emailSignIn(email, password);
+      console.log("Successfully logged in");
+      if (user) {
+        router.push("/");
+      } else {
+        console.log("Please verify you email");
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Email Sign In Error:", error);
     }
   };
 
@@ -83,7 +79,7 @@ const Login = () => {
 
           <div className="flex items-center justify-center mt-5 lg:mt-[44px]">
             <button
-              onClick={handleEmailSigin}
+              onClick={handleEmailSignIn}
               className="px-[80px] py-[10px] lg:py-[13px] lg:px-[105px] bg-primary rounded-lg text-background text-[12px] lg:text-[24px]"
             >
               LOGIN

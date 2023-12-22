@@ -18,35 +18,26 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn()
-        .then(() => {
-          router.push("/");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      await googleSignIn();
+      if (user) {
+        router.push("/");
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Google Sign In Error:", error);
     }
   };
 
   const handleEmailSignup = async () => {
     try {
       if (password === confirm_password) {
-        await createUserWithEmail(email, password)
-          .then(() => {
-            router.push("/login");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        await createUserWithEmail(email, password);
       } else {
         toast(
           "Passwords do not match. Double-check and try entering them again"
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error("Email Sign Up Error:", error);
     }
   };
 

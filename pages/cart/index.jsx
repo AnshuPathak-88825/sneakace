@@ -95,15 +95,17 @@ const Cart = () => {
               key={index}
               className="border-2 flex flex-row mt-6 bg-white w-full"
             >
-              <div className="w-1/6 flex p-4 justify-center">
-                <Image
-                  height={100}
-                  width={100}
-                  src={productEntry.product.variations[0].productImage[0]}
-                  alt={productEntry.product.productName} // Update with the actual product name
-                  className="w-full rounded-2xl inline-block cursor-pointer"
-                />
-              </div>
+              {productEntry.product.variations[0] && (
+                <div className="w-1/6 flex p-4 justify-center">
+                  <Image
+                    height={100}
+                    width={100}
+                    src={productEntry.product.variations[0].productImage[0]}
+                    alt={productEntry.product.productName} // Update with the actual product name
+                    className="w-full rounded-2xl inline-block cursor-pointer"
+                  />
+                </div>
+              )}
               <div className="w-1/3 flex p-4 items-center justify-center">
                 {productEntry.product.productName}{" "}
               </div>

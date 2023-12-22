@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useEffect } from "react";
-import {FaRegHeart,FaShoppingCart } from "react-icons/fa";
+import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
+import { UserAuth } from "../context/AuthContext";
 
 import logo from "../public/assets/images/logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import Link from "next/link";
-const Navbar = () => {
 
+const Navbar = () => {
   const menuList = [
     { label: "Shop", path: "/shop" },
     { label: "Collection", path: "/collection" },
@@ -17,6 +18,7 @@ const Navbar = () => {
     { label: "Contact Us", path: "/contact" },
   ];
   const [nav, setNav] = useState(false);
+  const [usr, setUsr] = useState(false);
   const handleChange = () => {
     setNav(!nav);
   };
@@ -24,9 +26,17 @@ const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // console.log(user);
     const timeout = setTimeout(() => setIsMounted(true), 3500);
     return () => clearTimeout(timeout); // Set isMounted to true when component is mounted
   }, []);
+
+  // Logout functions
+  const { user, logOut } = UserAuth();
+
+  const handleLogOut = () => {
+    logOut();
+  };
 
   return (
     <>
@@ -53,17 +63,23 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className="rounded-full border p-2 cursor-pointer">
-              <Link href="/cart">
-                <FaShoppingCart size={30} />
+                <Link href="/cart">
+                  <FaShoppingCart size={30} />
                 </Link>
               </div>
               <div className="rounded-full border p-2 cursor-pointer">
                 <BsFillPersonFill size={30} />
               </div>
               <div className="rounded-full border p-2 cursor-pointer hover:bg-secondary/50 duration-300">
-                <Link href="/login">
-                  <button className="w-[120px] text-xl">Login</button>
-                </Link>
+                {user ? (
+                  <Link href="/login" onClick={handleLogOut}>
+                    <button className="w-[120px] text-xl">Logout</button>
+                  </Link>
+                ) : (
+                  <Link href="/login">
+                    <button className="w-[120px] text-xl">Login</button>
+                  </Link>
+                )}
               </div>
             </div>
             <div
@@ -98,11 +114,19 @@ const Navbar = () => {
                     </Link>
                   </ul>
                 ))}
-                <Link href="/login" onClick={handleChange}>
-                  <button className="p-3 text-lg w-[108px] border border-primary rounded-lg text-primary hover:bg-background hover:text-primary duration-200 ease-in-out">
-                    Login
-                  </button>
-                </Link>
+                {user ? (
+                  <Link href="/login" onClick={handleLogOut}>
+                    <button className="p-3 text-lg w-[108px] border border-primary rounded-lg text-primary hover:bg-background hover:text-primary duration-200 ease-in-out">
+                      logout
+                    </button>
+                  </Link>
+                ) : (
+                  <Link href="/login" onClick={handleChange}>
+                    <button className="p-3 text-lg w-[108px] border border-primary rounded-lg text-primary hover:bg-background hover:text-primary duration-200 ease-in-out">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
@@ -23,7 +24,11 @@ export const AuthContextProvider = ({ children }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setUser(user);
+        if (user.emailVerified) {
+          setUser(user);
+        } else {
+          setUser(null);
+        }
       })
       .catch((error) => {
         // Handle errors
@@ -37,6 +42,9 @@ export const AuthContextProvider = ({ children }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        sendEmailVerification(auth.currentUser).then(() => {
+          console.log("link sent");
+        });
         setUser(user);
       })
       .catch((error) => {
@@ -58,7 +66,9 @@ export const AuthContextProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn,createUserWithEmail,emailSignIn, logOut }}>
+    <AuthContext.Provider
+      value={{ user, googleSignIn, createUserWithEmail, emailSignIn, logOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
