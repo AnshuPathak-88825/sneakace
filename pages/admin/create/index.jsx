@@ -59,33 +59,39 @@ const Create = () => {
       productPrice,
       variations,
     };
-
-    try {
-      const response = await fetch("/api/product/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-
-      if (response.ok) {
-        // Handle successful response
-        setProductName("");
-        setProductNumber("");
-        setProductShortDescription("");
-        setProductLongDescription("");
-        setProductQuantity("");
-        setProductPrice("");
-        setvariations([]);
-        console.log("Product created successfully");
-      } else {
-        // Handle error response
-        console.error("Error creating product");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    if(product.variations.length===0)
+    {
+      console.log("please add atlest 1 variation");
     }
+    else{
+      try {
+        const response = await fetch("/api/product/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
+        });
+  
+        if (response.ok) {
+          // Handle successful response
+          setProductName("");
+          setProductNumber("");
+          setProductShortDescription("");
+          setProductLongDescription("");
+          setProductQuantity("");
+          setProductPrice("");
+          setvariations([]);
+          console.log("Product created successfully");
+        } else {
+          // Handle error response
+          console.error("Error creating product");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    
   };
 
   const handleVariation = async () => {
