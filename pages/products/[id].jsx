@@ -8,6 +8,8 @@ import { AiOutlineCopy } from "react-icons/ai";
 import TabButton from "../../components/TabButton";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { FaHeart } from "react-icons/fa";
+
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -24,7 +26,7 @@ const ProductDetails = () => {
   const { id } = router.query;
   const [variation, setVariation] = useState([]);
   const { user } = UserAuth();
-  const [vImage,setVimage]=useState(0);
+  const [vImage, setVimage] = useState(0);
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -67,6 +69,28 @@ const ProductDetails = () => {
       }
     } catch (error) {
       console.error("Error adding product to cart:", error.message);
+    }
+  };
+
+  const addToWishlist = async () => {
+    try {
+      const user_id = user.email.split("@")[0];
+      const product_id = id;
+      console.log(user_id);
+
+      const response = await axios.post("/api/wishlist/addProduct", {
+        user_id,
+        product_id,
+        variationId: "variation_123",
+      });
+
+      if (response.status === 200) {
+        console.log("Product added to wishlist successfully");
+      } else {
+        console.error("Error adding product to wishlist:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding product to wishlist:", error.message);
     }
   };
 
@@ -171,7 +195,6 @@ const ProductDetails = () => {
       ),
     },
   ];
- 
 
   return (
     <div className="w-full md:py-20 bg-white">
@@ -184,7 +207,12 @@ const ProductDetails = () => {
             <>
               {" "}
               <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-                {variation&&<ProductCarasoulDetails variation={variation} index={vImage}/>}
+                {variation && (
+                  <ProductCarasoulDetails
+                    variation={variation}
+                    index={vImage}
+                  />
+                )}
               </div>
               <div className="lg:w-1/2 flex-1 pl-0   p-5">
                 <h2 className="text-lg lg:text-2xl text-yellow-500 font-bold mb-4">
@@ -203,20 +231,23 @@ const ProductDetails = () => {
                   {productData.productShortDescription}
                 </div>
                 <div className="border border-grey-300 border-solid border m-3"></div>
-                <div className="flex flex-row border-2  overflow-auto	box-border		" >
+                <div className="flex flex-row border-2  overflow-auto	box-border		">
                   {variation &&
                     variation.map((item, index) => (
-                      
-                      <div key={index} className="border-2 text-black  m-2 w-[200px]" onClick={()=>setVimage(index)}>
+                      <div
+                        key={index}
+                        className="border-2 text-black  m-2 w-[200px]"
+                        onClick={() => setVimage(index)}
+                      >
                         <Image
                           className={`cursor-pointer p-5 rounded-lg`}
                           src={item.productImage[0]}
                           width={200}
                           height={200}
                         />
-                        <div className="p-1" >Size:   {item.productSize}</ div>
-                        <div className="p-1">Pattern:   {item.productSize}</div>
-                        <div className="p-1">colour:   {item.productColor}</div>
+                        <div className="p-1">Size: {item.productSize}</div>
+                        <div className="p-1">Pattern: {item.productSize}</div>
+                        <div className="p-1">colour: {item.productColor}</div>
                       </div>
                     ))}
                 </div>
@@ -245,7 +276,7 @@ const ProductDetails = () => {
                     Add to Cart
                   </button>
                   <div className="text-gray-700 text-xl p-0 m-3 cursor-pointer">
-                    <IoMdHeartEmpty />
+                    <IoMdHeartEmpty onClick={addToWishlist} />
                   </div>
                 </div>
               </div>

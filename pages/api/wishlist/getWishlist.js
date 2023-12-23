@@ -1,12 +1,12 @@
 import dbConnect from "../../../dbConnect/db";
-import Wishlist from "../../../models/Wishlist";
+import Wishlist from "../../../model/Wishlist";
 
 export default async function handler(req, res) {
-  if (req.method === "GET") {
+  if (req.method === "POST") {
     try {
       await dbConnect();
 
-      const { user_id } = req.query;
+      const { user_id } = req.body;
 
       const wishlist = await Wishlist.findOne({ user_id });
 

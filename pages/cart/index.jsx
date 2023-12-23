@@ -5,6 +5,8 @@ import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
 
 import img from "../../public/assets/images/shoe2.jpg";
 import axios from "axios";
+import { UserAuth } from "../../context/AuthContext";
+
 const Cart = () => {
   const iconStyle = {
     cursor: "pointer",
@@ -12,28 +14,31 @@ const Cart = () => {
   };
 
   const [cart, setCart] = useState(null);
-
   const [productList, setProductList] = useState([]);
+  const { user } = UserAuth();
 
   useEffect(() => {
     const fetchCart = async () => {
-      try {
-        const response = await axios.post("/api/cart/getCart", {
-          user_id: "user123",
-        });
+      if (user) {
+        const user_id = user.email.split("@")[0];
+        try {
+          const response = await axios.post("/api/cart/getCart", {
+            user_id,
+          });
 
-        if (response.status === 200) {
-          setCart(response.data.data);
-        } else {
-          console.error("Error fetching cart:", response.statusText);
+          if (response.status === 200) {
+            setCart(response.data.data);
+          } else {
+            console.error("Error fetching cart:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error fetching cart:", error.message);
         }
-      } catch (error) {
-        console.error("Error fetching cart:", error.message);
       }
     };
 
     fetchCart();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchProductList = async () => {
@@ -53,12 +58,6 @@ const Cart = () => {
               (variation) => variation.variationId === variationId
             );
 
-            // console.log("variationId:", variationId);
-            // console.log(
-            //   "productDetails.variations:",
-            //   productDetails.variations[0].productImage
-            // );
-
             updatedProductList.push({
               product: productDetails,
               variation: variationDetails,
@@ -75,6 +74,28 @@ const Cart = () => {
 
     fetchProductList();
   }, [cart]);
+
+  async function deleteProductFromCart(product_id) {
+    try {
+      const user_id = user.email.split("@")[0];
+      const variationId = "variation_123";
+
+      const response = await axios.delete("/api/cart/deleteProduct", {
+        data: { user_id, product_id, variationId },
+      });
+
+      if (response.status === 200 && response.data.success) {
+        console.log("Product deleted from cart:", response.data.data);
+        return true;
+      } else {
+        console.error("Error deleting product from cart:", response.data.error);
+        return false;
+      }
+    } catch (error) {
+      console.error("Error deleting product from cart:", error.message);
+      return false;
+    }
+  }
 
   return (
     <>
@@ -134,7 +155,13 @@ const Cart = () => {
                 ${productEntry.product.productPrice * productEntry.quantity}
               </div>
               <div className="w-1/6 flex p-4 items-center justify-center">
-                <AiOutlineDelete size={40} style={iconStyle} />
+                <AiOutlineDelete
+                  onClick={() => {
+                    deleteProductFromCart(productEntry.product._id);
+                  }}
+                  size={40}
+                  style={iconStyle}
+                />
               </div>
             </div>
           ))}
