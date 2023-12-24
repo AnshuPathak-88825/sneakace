@@ -13,13 +13,14 @@ import { AiOutlineEye } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProductGrid = () => {
+const ProductGrid = ({ selectedFilters }) => {
   const [gridstate, setGridstate] = useState("big");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   let response;
 
   useEffect(() => {
+    console.log("Filters recieved", selectedFilters);
     const getProducts = async () => {
       try {
         const response = await axios.get("/api/product/getAllProducts");
@@ -34,6 +35,32 @@ const ProductGrid = () => {
 
     getProducts();
   }, []);
+
+  useEffect(() => {
+    console.log("Filters received", selectedFilters);
+
+    const filterProducts = () => {
+      const nonEmptyFilters = selectedFilters.filter((filter) => filter !== "");
+
+      if (selectedFilters.length === 0) {
+        // do nothing
+      } else {
+        var filteredProducts = products.filter((product) => {
+          return product.variations.some((variation) =>
+            selectedFilters.includes(variation.productColor)
+          );
+        });
+
+        filteredProducts = filteredProducts.filter((filter) => filter !== "");
+        console.log(filterProducts);
+
+        setProducts(filteredProducts);
+      }
+    };
+
+    filterProducts();
+  }, [selectedFilters]);
+
   const handlebigtile = () => {
     setGridstate("big");
   };

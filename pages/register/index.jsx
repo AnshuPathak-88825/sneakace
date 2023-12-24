@@ -10,7 +10,7 @@ import TransitionEffect from "../../components/TransitionEffect";
 const Login = () => {
   const router = useRouter();
 
-  const { user, googleSignIn, createUserWithEmail } = UserAuth();
+  const { googleSignIn, createUserWithEmail } = UserAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,10 +18,13 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
-      if (user) {
-        router.push("/");
-      }
+      await googleSignIn()
+        .then(() => {
+          router.push("/");
+        })
+        .catch((error) => {
+          console.log("Error in sign in with Google: ", error);
+        });
     } catch (error) {
       console.error("Google Sign In Error:", error);
     }
@@ -30,7 +33,8 @@ const Login = () => {
   const handleEmailSignup = async () => {
     try {
       if (password === confirm_password) {
-        await createUserWithEmail(email, password);
+        const user = await createUserWithEmail(email, password);
+        router.push("/login");
       } else {
         toast(
           "Passwords do not match. Double-check and try entering them again"
@@ -40,7 +44,6 @@ const Login = () => {
       console.error("Email Sign Up Error:", error);
     }
   };
-
   return (
     <section className="w-full p-5">
       <TransitionEffect />

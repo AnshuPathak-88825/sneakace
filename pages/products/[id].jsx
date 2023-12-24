@@ -27,6 +27,8 @@ const ProductDetails = () => {
   const [variation, setVariation] = useState([]);
   const { user } = UserAuth();
   const [vImage, setVimage] = useState(0);
+  const [variationId, setVariationId] = useState("");
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -37,6 +39,7 @@ const ProductDetails = () => {
           setProductData(response.data.data);
           setLoading(false);
           setVariation(response.data.data.variations);
+          setVariationId(response.data.data.variations[0]._id);
         } else {
           console.error("Error fetching product:", response.statusText);
         }
@@ -52,13 +55,13 @@ const ProductDetails = () => {
 
   const addProductToCart = async () => {
     try {
-      const user_id = "user123"; // Replace with the actual user_id
+      const user_id = user.email.split("@")[0];
       const product_id = id;
 
       const response = await axios.post("/api/cart/addProduct", {
         user_id,
         product_id,
-        variationId: "variation_123",
+        variationId,
         quantity: count,
       });
 
@@ -237,7 +240,10 @@ const ProductDetails = () => {
                       <div
                         key={index}
                         className="border-2 text-black  m-2 w-[200px]"
-                        onClick={() => setVimage(index)}
+                        onClick={() => {
+                          setVimage(index);
+                          setVariationId(item._id);
+                        }}
                       >
                         <Image
                           className={`cursor-pointer p-5 rounded-lg`}

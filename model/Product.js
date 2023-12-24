@@ -5,21 +5,12 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  productNumber: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   productShortDescription: {
     type: String,
     required: true,
   },
   productLongDescription: {
     type: String,
-    required: true,
-  },
-  productQuantity: {
-    type: Number,
     required: true,
   },
   productPrice: {
@@ -29,9 +20,9 @@ const productSchema = new mongoose.Schema({
 
   variations: [
     {
-      variationId: {
-        type: "String",
-        required: true,
+      productQuantity: {
+        type: Number,
+        default: 1,
       },
       productSize: {
         type: String,

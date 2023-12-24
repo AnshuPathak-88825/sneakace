@@ -15,16 +15,28 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+    try {
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+
+      console.log("Google Sign In success. User:", user);
+      setUser(user);
+      return user;
+    } catch (error) {
+      console.error("Google Sign In Error:", error);
+      throw error;
+    }
   };
 
   const emailSignIn = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+
+        // console.log(user);
+
         if (user.emailVerified) {
           setUser(user);
         } else {
@@ -40,19 +52,15 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const createUserWithEmail = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
         const user = userCredential.user;
-        sendEmailVerification(auth.currentUser).then(() => {
-          console.log("link sent");
+        return sendEmailVerification(auth.currentUser).then(() => {
+          console.log("Verification link sent");
+          return user;
         });
-        setUser(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(`${errorCode}: ${errorMessage}`);
-      });
+      }
+    );
   };
 
   const logOut = () => {

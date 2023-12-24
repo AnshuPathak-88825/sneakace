@@ -21,6 +21,7 @@ const Cart = () => {
     const fetchCart = async () => {
       if (user) {
         const user_id = user.email.split("@")[0];
+
         try {
           const response = await axios.post("/api/cart/getCart", {
             user_id,
@@ -78,7 +79,6 @@ const Cart = () => {
   async function deleteProductFromCart(product_id) {
     try {
       const user_id = user.email.split("@")[0];
-      const variationId = "variation_123";
 
       const response = await axios.delete("/api/cart/deleteProduct", {
         data: { user_id, product_id, variationId },
@@ -121,7 +121,7 @@ const Cart = () => {
                   <Image
                     height={100}
                     width={100}
-                    src={productEntry.product.variations[0].productImage[0]}
+                    src={productEntry.variation.productImage[0]}
                     alt={productEntry.product.productName} // Update with the actual product name
                     className="w-full rounded-2xl inline-block cursor-pointer"
                   />

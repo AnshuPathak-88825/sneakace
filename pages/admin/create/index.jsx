@@ -9,7 +9,6 @@ import axios from "axios";
 const Create = () => {
   const [addFile, removeFile, selectedFiles] = useFileSelection();
   const [productName, setProductName] = useState("");
-  const [productNumber, setProductNumber] = useState("");
   const [productSize, setProductSize] = useState("");
   const [productPattern, setProductPattern] = useState("");
   const [productColor, setProductColor] = useState("");
@@ -18,7 +17,6 @@ const Create = () => {
   const [productCategory, setProductCategory] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [variationId, setVariationId] = useState("");
   const [variations, setvariations] = useState([]);
 
   const delete_tag = (setState, e, array) => {
@@ -51,19 +49,14 @@ const Create = () => {
   const handleSubmit = async () => {
     const product = {
       productName,
-      productNumber,
-
       productShortDescription,
       productLongDescription,
-      productQuantity,
       productPrice,
       variations,
     };
-    if(product.variations.length===0)
-    {
+    if (product.variations.length === 0) {
       console.log("please add atlest 1 variation");
-    }
-    else{
+    } else {
       try {
         const response = await fetch("/api/product/create", {
           method: "POST",
@@ -72,11 +65,10 @@ const Create = () => {
           },
           body: JSON.stringify(product),
         });
-  
+
         if (response.ok) {
           // Handle successful response
           setProductName("");
-          setProductNumber("");
           setProductShortDescription("");
           setProductLongDescription("");
           setProductQuantity("");
@@ -91,7 +83,6 @@ const Create = () => {
         console.error("Error:", error);
       }
     }
-    
   };
 
   const handleVariation = async () => {
@@ -104,7 +95,7 @@ const Create = () => {
     }
 
     const newVariation = {
-      variationId,
+      productQuantity,
       productSize,
       productColor,
       productCategory,
@@ -113,11 +104,11 @@ const Create = () => {
     };
 
     setvariations((prevVariations) => [...prevVariations, newVariation]);
+    setProductQuantity("");
     setProductSize("");
     setProductCategory("");
     setProductPattern("");
     setProductColor("");
-    setVariationId("");
   };
 
   return (
@@ -139,17 +130,6 @@ const Create = () => {
               type="text"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-            />
-          </div>
-          <div className="mb-4 flex items-center">
-            <label className="relative left-5 font-medium  w-1/4">
-              Product Number
-            </label>
-            <input
-              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
-              type="number"
-              value={productNumber}
-              onChange={(e) => setProductNumber(e.target.value)}
             />
           </div>
 
@@ -174,17 +154,6 @@ const Create = () => {
             />
           </div>
 
-          <div className="mb-4 flex items-center">
-            <label className="relative left-5 font-medium  w-1/4">
-              Product Quantity
-            </label>
-            <input
-              className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
-              type="text"
-              value={productQuantity}
-              onChange={(e) => setProductQuantity(e.target.value)}
-            />
-          </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
               Product Price
@@ -215,15 +184,13 @@ const Create = () => {
           </div>
           <div className="mb-4 flex items-center">
             <label className="relative left-5 font-medium  w-1/4">
-              Variation Id
+              Product Quantity
             </label>
-
             <input
               className="ml-2 mt-1 p-2 border border-gray-300 rounded-md w-3/5 focus:outline-none focus:ring focus:border-blue-300"
               type="text"
-              placeholder="Enter Variation Id"
-              onChange={(e) => setVariationId(e.target.value)}
-              value={variationId}
+              value={productQuantity}
+              onChange={(e) => setProductQuantity(e.target.value)}
             />
           </div>
           <div className="mb-4 flex items-center">

@@ -14,7 +14,14 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
+      await googleSignIn()
+        .then(() => {
+          console.log(user);
+          router.push("/");
+        })
+        .catch((error) => {
+          console.log("Error in sign in with google: ", error);
+        });
     } catch (error) {
       console.error("Google Sign In Error:", error);
     }
@@ -23,11 +30,16 @@ const Login = () => {
   const handleEmailSignIn = async () => {
     try {
       await emailSignIn(email, password);
-      console.log("Successfully logged in");
-      if (user) {
+
+      const currentUser = user;
+
+      if (currentUser && currentUser.emailVerified) {
+        console.log("Successfully logged in");
         router.push("/");
+      } else if (currentUser) {
+        console.log("Please verify your email");
       } else {
-        console.log("Please verify you email");
+        console.log("Invalid credentials");
       }
     } catch (error) {
       console.error("Email Sign In Error:", error);
