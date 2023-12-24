@@ -1,5 +1,5 @@
 import dbConnect from "../../../dbConnect/db";
-import Cart from "../../../models/Cart";
+import Cart from "../../../model/Cart";
 
 export default async function handler(req, res) {
   if (req.method === "DELETE") {

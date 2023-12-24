@@ -1,5 +1,5 @@
 import dbConnect from "../../../dbConnect/db";
-import Wishlist from "../../../models/Wishlist";
+import Wishlist from "../../../model/Wishlist";
 
 export default async function handler(req, res) {
   if (req.method === "DELETE") {
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       }
 
       wishlist.products = wishlist.products.filter(
-        (productId) => productId.toString() !== product_id
+        (product) => product.product.toString() !== product_id
       );
       await wishlist.save();
 

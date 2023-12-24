@@ -15,9 +15,6 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      if (user) {
-        router.push("/");
-      }
     } catch (error) {
       console.error("Google Sign In Error:", error);
     }
