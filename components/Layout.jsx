@@ -19,6 +19,7 @@ const Layout = ({ children, title_tag }) => {
 
   const isMyAccount = pathname === "/my_account";
   const isRegister = pathname === "/register";
+  const isForget_Password=pathname==="/forget-password"
   const isProductDetails = pathname ? pathname.startsWith("/products/") : false; // Add null check here
   const [isLoading, setIsLoading] = useState(isHome);
 
@@ -34,11 +35,11 @@ const Layout = ({ children, title_tag }) => {
         <title>Sneakace</title>
       </Head>
 
-      {isLoading && (isHome || isLogin || isProducts || isAdmin || isCart || isWishlist || isMyAccount || isRegister || isCheckout || isProductDetails) && (
+      {isLoading && (isHome || isLogin||isForget_Password || isProducts || isAdmin || isCart || isWishlist || isMyAccount || isRegister || isCheckout || isProductDetails) && (
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {(isHome || isAdmin || isLogin || isProducts || isCart || isCheckout || isWishlist || isMyAccount || isRegister || isProductDetails) && (
+      {(isHome || isAdmin || isLogin || isProducts||isForget_Password || isCart || isCheckout || isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
           {(isHome || isWishlist || isCheckout || isCart) && <Navbar />}
           <main className="flex-grow">{children}</main>

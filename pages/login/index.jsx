@@ -73,7 +73,11 @@ const Login = () => {
               <p className="text-sm">Remember Me</p>
             </div>
             <div>
+            <Link href="/forget-password">
+
               <p className="text-sm">Forgot Password?</p>
+              </Link>
+
             </div>
           </div>
 
