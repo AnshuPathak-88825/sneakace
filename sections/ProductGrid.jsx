@@ -17,6 +17,7 @@ const ProductGrid = ({ selectedFilters }) => {
   const [gridstate, setGridstate] = useState("big");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [originalProducts, setOriginalProducts] = useState([]);
   let response;
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const ProductGrid = ({ selectedFilters }) => {
         const response = await axios.get("/api/product/getAllProducts");
         console.log(response);
         setProducts(response.data);
+        setOriginalProducts(response.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -42,17 +44,18 @@ const ProductGrid = ({ selectedFilters }) => {
     const filterProducts = () => {
       const nonEmptyFilters = selectedFilters.filter((filter) => filter !== "");
 
-      if (selectedFilters.length === 0) {
-        // do nothing
+      if (nonEmptyFilters.length === 0) {
+        setProducts(originalProducts);
       } else {
-        var filteredProducts = products.filter((product) => {
-          return product.variations.some((variation) =>
-            selectedFilters.includes(variation.productColor)
+        const filteredProducts = products.filter((product) => {
+          return product.variations.some(
+            (variation) =>
+              nonEmptyFilters.includes(variation.productSize) ||
+              nonEmptyFilters.includes(variation.productColor)
           );
         });
 
-        filteredProducts = filteredProducts.filter((filter) => filter !== "");
-        console.log(filterProducts);
+        console.log(filteredProducts);
 
         setProducts(filteredProducts);
       }

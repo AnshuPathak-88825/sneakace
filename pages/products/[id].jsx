@@ -84,7 +84,7 @@ const ProductDetails = () => {
       const response = await axios.post("/api/wishlist/addProduct", {
         user_id,
         product_id,
-        variationId: "variation_123",
+        variationId,
       });
 
       if (response.status === 200) {

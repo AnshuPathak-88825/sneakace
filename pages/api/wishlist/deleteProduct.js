@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     try {
       await dbConnect();
 
-      const { user_id, product_id } = req.body;
+      const { user_id, product_id, variationId } = req.body;
 
       const wishlist = await Wishlist.findOne({ user_id });
 
@@ -17,7 +17,9 @@ export default async function handler(req, res) {
       }
 
       wishlist.products = wishlist.products.filter(
-        (product) => product.product.toString() !== product_id
+        (product) =>
+          product.product.toString() !== product_id ||
+          product.variationId !== variationId
       );
       await wishlist.save();
 

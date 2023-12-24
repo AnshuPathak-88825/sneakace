@@ -50,9 +50,10 @@ const ProductSearch = ({ onFilterChange }) => {
   const renderColorFilterOptions = () => {
     const colorFilterOptions = [
       { label: "All Colors", value: "" },
-      { label: "White", value: "white" },
-      { label: "Black", value: "black" },
-      { label: "Brown", value: "brown" },
+      { label: "White", value: "White" },
+      { label: "Black", value: "Black" },
+      { label: "Brown", value: "Brown" },
+      { label: "Red", value: "Red" },
     ];
 
     return colorFilterOptions.map((filter) => (

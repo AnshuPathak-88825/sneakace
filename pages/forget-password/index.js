@@ -5,12 +5,26 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { UserAuth } from "../../context/AuthContext";
 import { useState } from "react";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+
 const ForgetPassword = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
 
-  const handleForget = async () => {};
+  const handleForget = () => {
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("password reset mail sent");
+        router.push("/login");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
   return (
     <section className="h-screen w-full p-5 ">

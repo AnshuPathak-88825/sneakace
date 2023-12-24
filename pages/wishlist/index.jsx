@@ -6,6 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
 import img from "../../public/assets/images/shoe2.jpg";
 import { UserAuth } from "../../context/AuthContext";
 import axios from "axios";
+import { useRouter } from "next/router";
 const Wishlist = () => {
   const iconStyle = {
     cursor: "pointer",
@@ -15,6 +16,7 @@ const Wishlist = () => {
   const [wishlist, setWishlist] = useState(null);
   const [productList, setProductList] = useState([]);
   const { user } = UserAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -55,7 +57,7 @@ const Wishlist = () => {
             const productDetails = productResponse.data.data;
 
             const variationDetails = productDetails.variations.find(
-              (variation) => variation.variationId === variationId
+              (variation) => variation._id === variationId
             );
 
             updatedProductList.push({
@@ -75,12 +77,12 @@ const Wishlist = () => {
     fetchProductList();
   }, [wishlist]);
 
-  async function deleteProductFromWishlist(product_id) {
+  async function deleteProductFromWishlist(product_id, variationId) {
     try {
       const user_id = user.email.split("@")[0];
 
       const response = await axios.delete("/api/wishlist/deleteProduct", {
-        data: { user_id, product_id },
+        data: { user_id, product_id, variationId },
       });
 
       if (response.status === 200 && response.data.success) {
@@ -99,14 +101,14 @@ const Wishlist = () => {
     }
   }
 
-  const addToCartAndRemoveFromWishlist = async (product_id) => {
+  const addToCartAndRemoveFromWishlist = async (product_id, variationId) => {
     try {
       const user_id = user.email.split("@")[0];
 
       const response = await axios.post("/api/cart/addProduct", {
         user_id,
         product_id,
-        variationId: "variation_123",
+        variationId,
         quantity: 1,
       });
 
@@ -141,20 +143,26 @@ const Wishlist = () => {
               <Image
                 width={100}
                 height={100}
-                src={item.product.variations[0].productImage[0]} // Replace with the actual image source property
+                src={item.variation.productImage[0]} // Replace with the actual image source property
                 alt={item.product.productName}
                 className="w-full rounded-2xl inline-block cursor-pointer"
               />
             </div>
-            <div className="w-1/3 flex p-4 items-center justify-center">
+            <Link
+              href={`/products/${item.product._id}`}
+              className="w-1/3 flex p-4 items-center justify-center"
+            >
               {item.product.productName}
-            </div>
+            </Link>
             <div className="w-1/6 flex p-4 items-center justify-center">
               {`€${item.product.productPrice}`}{" "}
             </div>
             <div
               onClick={() => {
-                addToCartAndRemoveFromWishlist(item.product._id);
+                addToCartAndRemoveFromWishlist(
+                  item.product._id,
+                  item.variation._id
+                );
               }}
               className="w-1/6 flex p-4 items-center justify-center"
             >
@@ -163,7 +171,10 @@ const Wishlist = () => {
             <div className="w-1/6 flex p-4 items-center justify-center">
               <AiOutlineDelete
                 onClick={() => {
-                  deleteProductFromWishlist(item.product._id);
+                  deleteProductFromWishlist(
+                    item.product._id,
+                    item.variation._id
+                  );
                 }}
                 size={40}
                 style={iconStyle}
@@ -176,7 +187,12 @@ const Wishlist = () => {
           <div className="flex justify-between py-5 px-12 lg:px-24 bg-white">
             <div className="w-auto border-2 rounded-[50px] bg-slate-300">
               <Link href="products">
-                <button className="text-xl lg:text-2xl  px-12 lg:px-20 py-5">
+                <button
+                  onClick={() => {
+                    router.push("/products");
+                  }}
+                  className="text-xl lg:text-2xl  px-12 lg:px-20 py-5"
+                >
                   Continue Shopping
                 </button>
               </Link>

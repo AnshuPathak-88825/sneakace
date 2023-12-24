@@ -7,6 +7,7 @@ export default async function handler(req, res) {
       await dbConnect();
 
       const { user_id, product_id, variationId } = req.body;
+      console.log(variationId);
 
       let wishlist = await Wishlist.findOne({ user_id });
 
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
           product.variationId === variationId
       );
 
-      if (existingProductIndex == -1) {
+      if (existingProductIndex === -1) {
         wishlist.products.push({
           product: product_id,
           variationId,

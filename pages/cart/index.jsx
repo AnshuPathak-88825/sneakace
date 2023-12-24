@@ -6,6 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai"; // This is the dustbin icon
 import img from "../../public/assets/images/shoe2.jpg";
 import axios from "axios";
 import { UserAuth } from "../../context/AuthContext";
+import { useRouter } from "next/router";
 
 const Cart = () => {
   const iconStyle = {
@@ -16,6 +17,7 @@ const Cart = () => {
   const [cart, setCart] = useState(null);
   const [productList, setProductList] = useState([]);
   const { user } = UserAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -56,7 +58,7 @@ const Cart = () => {
             const productDetails = productResponse.data.data;
 
             const variationDetails = productDetails.variations.find(
-              (variation) => variation.variationId === variationId
+              (variation) => variation._id === variationId
             );
 
             updatedProductList.push({
@@ -76,7 +78,7 @@ const Cart = () => {
     fetchProductList();
   }, [cart]);
 
-  async function deleteProductFromCart(product_id) {
+  async function deleteProductFromCart(product_id, variationId) {
     try {
       const user_id = user.email.split("@")[0];
 
@@ -127,9 +129,12 @@ const Cart = () => {
                   />
                 </div>
               )}
-              <div className="w-1/3 flex p-4 items-center justify-center">
+              <Link
+                href={`/products/${productEntry.product._id}`}
+                className="w-1/3 flex p-4 items-center justify-center"
+              >
                 {productEntry.product.productName}{" "}
-              </div>
+              </Link>
               <div className="w-1/6 flex p-4 items-center justify-center">
                 {productEntry.product.productPrice}{" "}
               </div>
@@ -157,7 +162,10 @@ const Cart = () => {
               <div className="w-1/6 flex p-4 items-center justify-center">
                 <AiOutlineDelete
                   onClick={() => {
-                    deleteProductFromCart(productEntry.product._id);
+                    deleteProductFromCart(
+                      productEntry.product._id,
+                      productEntry.variation._id
+                    );
                   }}
                   size={40}
                   style={iconStyle}
@@ -171,7 +179,12 @@ const Cart = () => {
       <div className="bg-white text-black h-auto mt-0">
         <div className="flex justify-between py-5 px-12 lg:px-24 bg-white">
           <div className="w-auto border-2 rounded-[50px] bg-slate-300">
-            <button className="text-xl lg:text-2xl  px-12 lg:px-20 py-5">
+            <button
+              onClick={() => {
+                router.push("/products");
+              }}
+              className="text-xl lg:text-2xl  px-12 lg:px-20 py-5"
+            >
               Continue Shopping
             </button>
           </div>
