@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { AuthContextProvider, UserAuth } from "../../context/AuthContext";
+import ReviewsSection from "../../sections/ReviewsSection";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
@@ -183,19 +184,7 @@ const ProductDetails = () => {
     {
       title: "Reviews",
       id: "Reviews",
-      content: (
-        <div className="flex items-center justify-center mt-10 text-center">
-          <p className="text-lg">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum
-            voluptatibus reprehenderit, nihil laudantium nemo saepe alias itaque
-            deserunt? Quasi tenetur quibusdam dolorum dolores. Earum nostrum
-            pariatur, impedit repellat ipsam beatae aliquam! Placeat tenetur
-            reprehenderit quam vel corrupti labore facere illum maiores nemo
-            consectetur expedita, accusamus aperiam voluptatem, pariatur eius
-            ratione?
-          </p>
-        </div>
-      ),
+      content: <ReviewsSection product_id={id} />,
     },
   ];
 
@@ -289,7 +278,6 @@ const ProductDetails = () => {
             </>
           )}
         </div>
-
         <div className="flex items-center justify-center gap-5 mt-5">
           <TabButton
             selectTab={() => handleTabChange("Additional Information")}

@@ -16,8 +16,14 @@ const ProductSearch = ({ onFilterChange }) => {
     console.log(updatedFilters);
   };
 
-  const handleSearchChange = (e) => {
-    setPhrase(e.target.value);
+  const handleSearch = () => {
+    const searchQuery = phrase;
+
+    const searchTerms = searchQuery.split(/\s+/).filter(Boolean);
+
+    const combinedFilters = [...selectedFilters, ...searchTerms];
+
+    onFilterChange(combinedFilters);
   };
 
   const renderDesignFilterOptions = () => {
@@ -82,7 +88,6 @@ const ProductSearch = ({ onFilterChange }) => {
       { label: "M", value: "M" },
       { label: "L", value: "L" },
       { label: "XL", value: "XL" },
-      // Add more pattern filter options as needed
     ];
 
     return patternFilterOptions.map((filter) => (
@@ -115,13 +120,16 @@ const ProductSearch = ({ onFilterChange }) => {
               type="text"
               placeholder="Search here.."
               value={phrase}
-              onChange={handleSearchChange}
+              onChange={(e) => {
+                setPhrase(e.target.value);
+              }}
               className="lg:w-[200px] outline-none bg-transparent rounded-lg"
             />
             <p className="text-lg">|</p>
             <BsSearch
               size={20}
               className="hover:text-secondary cursor-pointer"
+              onClick={handleSearch}
             />
           </div>
         </div>

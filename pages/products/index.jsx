@@ -6,6 +6,7 @@ const Products = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleFilterChange = (filters) => {
+    console.log("here is output : ", filters);
     setSelectedFilters(filters);
   };
   return (

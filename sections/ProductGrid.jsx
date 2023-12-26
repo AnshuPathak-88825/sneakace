@@ -21,7 +21,6 @@ const ProductGrid = ({ selectedFilters }) => {
   let response;
 
   useEffect(() => {
-    console.log("Filters recieved", selectedFilters);
     const getProducts = async () => {
       try {
         const response = await axios.get("/api/product/getAllProducts");
@@ -39,8 +38,6 @@ const ProductGrid = ({ selectedFilters }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Filters received", selectedFilters);
-
     const filterProducts = () => {
       const nonEmptyFilters = selectedFilters.filter((filter) => filter !== "");
 
