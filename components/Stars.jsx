@@ -1,26 +1,24 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { AiOutlineStar, AiFillCheckSquare } from "react-icons/ai";
-const Stars = ({rating}) => {
-  const ratingStar = Array.from({ length: 5 }, (elem, index) => {
-    let numbers = index + 0.5;
+import { AiOutlineStar } from "react-icons/ai";
+
+const Stars = ({ rating }) => {
+  const ratingStars = Array.from({ length: 5 }, (_, index) => {
+    const starValue = index + 1;
     return (
       <span key={index}>
-        {rating >= index + 1 ? (
-          <FaStar className="text-orange-500" />
-        ) : rating >= numbers ? (
-          <FaStarHalfAlt className="text-orange-500" />
+        {rating >= starValue ? (
+          <FaStar className="text-secondary text-xl" />
+        ) : rating >= starValue - 0.5 ? (
+          <FaStarHalfAlt className="text-secondary text-xl" />
         ) : (
-          <AiOutlineStar className="text-primary" />
+          <AiOutlineStar className="text-secondary text-xl" />
         )}
       </span>
     );
   });
-  return (
-    <span className="flex">
-      {ratingStar} 
-    </span>
-  )
+
+  return <span className="flex">{ratingStars}</span>;
 };
 
 export default Stars;

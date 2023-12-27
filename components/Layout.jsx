@@ -41,9 +41,9 @@ const Layout = ({ children, title_tag }) => {
 
       {(isHome || isAdmin || isLogin || isProducts||isForget_Password || isCart || isCheckout || isWishlist || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
-          {(isHome || isWishlist || isCheckout || isCart) && <Navbar />}
+          {(isHome || isWishlist || isCheckout || isCart ||isProducts) && <Navbar />}
           <main className="flex-grow">{children}</main>
-          {(isHome || isWishlist || isCheckout || isCart) && <Footer />}
+          {(isHome || isWishlist || isCheckout || isCart ||isProducts) && <Footer />}
         </div>
       )}
     </>

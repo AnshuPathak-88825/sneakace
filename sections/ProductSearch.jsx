@@ -45,7 +45,7 @@ const ProductSearch = ({ onFilterChange }) => {
         />
         <label
           htmlFor={filter.value || "default-checkbox"}
-          className="ml-2 text-sm font-medium text-primary"
+          className="ml-2 text-sm text-black"
         >
           {filter.label}
         </label>
@@ -74,7 +74,7 @@ const ProductSearch = ({ onFilterChange }) => {
         />
         <label
           htmlFor={filter.value || "default-checkbox"}
-          className="ml-2 text-sm font-medium text-primary"
+          className="ml-2 text-sm  text-black"
         >
           {filter.label}
         </label>
@@ -102,7 +102,7 @@ const ProductSearch = ({ onFilterChange }) => {
         />
         <label
           htmlFor={filter.value || "default-checkbox"}
-          className="ml-2 text-sm font-medium text-primary"
+          className="ml-2 text-sm  text-black"
         >
           {filter.label}
         </label>
@@ -111,7 +111,7 @@ const ProductSearch = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="max-w-[1040px] p-3">
+    <div className="w-full lg:w-1/4 p-3 text-black ">
       <div className="container mx-auto flex flex-col items-center lg:items-start gap-10">
         <div className="flex flex-col items-center lg:items-start gap-5">
           <p>Search</p>

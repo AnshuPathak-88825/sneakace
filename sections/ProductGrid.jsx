@@ -72,35 +72,35 @@ const ProductGrid = ({ selectedFilters }) => {
   };
 
   return (
-    <div className="flex-grow w-full p-3 lg:px-16">
+    <div className="flex-grow w-full flex-row  items-center  ">
       <div className="flex items-center justify-between">
         <p>Default</p>
         <div className="flex items-center gap-3">
           <BsFillGridFill
             size={25}
             onClick={handlebigtile}
-            className="cursor-pointer hover:text-secondary"
+            className="cursor-pointer text-gray-400 hover:text-secondary transition-colors duration-300"
           />
           <RiGridFill
             onClick={handlesmalltile}
             size={25}
-            className="cursor-pointer hover:text-secondary"
+            className="cursor-pointer text-gray-400 hover:text-secondary transition-colors duration-300"
           />
           <BsListUl
             onClick={handlelist}
             size={25}
-            className="cursor-pointer hover:text-secondary"
+            className="cursor-pointer text-gray-400 hover:text-secondary transition-colors duration-300"
           />
         </div>
       </div>
 
-      <div className="flex items-center mt-5">
+      <div className="flex items-center mt-1 w-full ">
         {loading ? (
           <div>Loading...</div>
         ) : (
           <>
             {gridstate === "big" && (
-              <div className="container mx-auto grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 xl:gap-x-10 xl:gap-y-10">
+              <div className="flex flex-row flex-wrap justify-center items-center  w-full">
                 {products.map((item, index) => (
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">
@@ -125,10 +125,10 @@ const ProductGrid = ({ selectedFilters }) => {
               </div>
             )}
             {gridstate === "small" && (
-              <div className="container mx-auto grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 xl:gap-x-8 xl:gap-y-8">
+              <div className="flex flex-row flex-wrap  w-full justify-start	">
                 {products.map((item, index) => (
                   <Link href={`/products/${item._id}`} key={index}>
-                    <div className="">
+                    <div className="m-3">
                       <SmallCard
                         img={
                           item.variations && item.variations.length > 0
@@ -148,7 +148,7 @@ const ProductGrid = ({ selectedFilters }) => {
               </div>
             )}
             {gridstate === "list" && (
-              <div className="flex flex-col ">
+              <div className="flex flex-col w-full justify-center items-center ">
                 {products.map((item, index) => (
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">

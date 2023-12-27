@@ -9,7 +9,7 @@ import TabButton from "../../components/TabButton";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
-
+import Stars from "../../components/Stars";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -18,6 +18,7 @@ import ReviewsSection from "../../sections/ReviewsSection";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
+  const rating=0;
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("W");
   const [selectedPattern, setSelectedPattern] = useState("W");
@@ -147,7 +148,7 @@ const ProductDetails = () => {
       title: "Additional Information",
       id: "Additional Information",
       content: (
-        <div className="flex flex-col items-center lg:items-start mt-10 gap-5">
+        <div className="flex flex-col items-center lg:items-start mt-10 gap-5 text-black">
           <div className="flex items-center gap-10">
             <p className="text-lg">Weight</p>
             <p className="text-lg">400g</p>
@@ -170,7 +171,7 @@ const ProductDetails = () => {
       title: "Description",
       id: "Description",
       content: (
-        <div className="flex items-center justify-center mt-10 text-center">
+        <div className="flex items-center justify-center mt-10 text-center text-black">
           <p className="text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi enim
             eum vel aliquam voluptates ut doloribus, reiciendis laborum soluta,
@@ -213,36 +214,37 @@ const ProductDetails = () => {
                 <div className="flex items-center mb-4 ">
                   <span className="text-gray-700 mr-2">Price:</span>
                   <span className="text-lg lg:text-xl font-bold text-yellow-500">
-                    {productData.productPrice}
+                  ₹ {productData.productPrice}
                   </span>
                 </div>
-                <div className="flex items-center mb-4">
-                  <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
-                </div>
+                
                 <div className="text-sm lg:text-base text-gray-600 mb-4 whitespace-normal">
                   {productData.productShortDescription}
                 </div>
-                <div className="border border-grey-300 border-solid border m-3"></div>
-                <div className="flex flex-row border-2  overflow-auto	box-border		">
+                <div className="flex items-center mb-4">
+                <Stars stars={rating} />
+                </div>
+                <div className="border border-grey-300 border-solid border m-3 "></div>
+                <div className="flex flex-row border-2  overflow-x-scroll		scrollbar-hide">
                   {variation &&
                     variation.map((item, index) => (
                       <div
                         key={index}
-                        className="border-2 text-black  m-2 w-[200px]"
+                        className="flex p-3 flex-col items-start  gap-1 border justify-start min-w-[150px] text-black font-Poppins_light w-fit"
                         onClick={() => {
                           setVimage(index);
                           setVariationId(item._id);
                         }}
                       >
                         <Image
-                          className={`cursor-pointer p-5 rounded-lg`}
+                          className="cursor-pointer  rounded-lg"
                           src={item.productImage[0]}
-                          width={200}
-                          height={200}
+                          width={150}
+                          height={150}
                         />
-                        <div className="p-1">Size: {item.productSize}</div>
-                        <div className="p-1">Pattern: {item.productSize}</div>
-                        <div className="p-1">colour: {item.productColor}</div>
+                        <div className="">Size: {item.productSize}</div>
+                        <div className="">Pattern: {item.productSize}</div>
+                        <div className="">colour: {item.productColor}</div>
                       </div>
                     ))}
                 </div>
@@ -278,7 +280,7 @@ const ProductDetails = () => {
             </>
           )}
         </div>
-        <div className="flex items-center justify-center gap-5 mt-5">
+        <div className="flex items-center justify-center gap-5 mt-5 text-black ">
           <TabButton
             selectTab={() => handleTabChange("Additional Information")}
             active={tab === "Additional Information"}

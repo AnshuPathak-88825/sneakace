@@ -74,7 +74,7 @@ const ReviewsSection = ({ product_id }) => {
   return (
     <div className="container mx-auto p-4 bg-white text-black">
       {/* Top Section */}
-      <div className="flex items-center mb-8">
+      <div className="flex items-center mb-8 flex-wrap">
         <div className="w-1/2">
           <h1 className="text-3xl font-bold">Average Rating</h1>
           <div className="flex items-center space-x-2 mt-2">
@@ -91,7 +91,7 @@ const ReviewsSection = ({ product_id }) => {
             </span>
           </div>
         </div>
-        <div className="w-1/2 flex justify-end">
+        <div className="w-1/2 flex justify-end border-2">
           {[5, 4, 3, 2, 1].map((value) => (
             <div key={value} className="flex flex-col items-center mr-4">
               <span className="text-gray-500">
@@ -124,9 +124,8 @@ const ReviewsSection = ({ product_id }) => {
       {/* Bottom Section */}
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">All Reviews ({reviews.length})</h2>
-          {/* Add Review Form */}
-          <div className="flex items-center">
+          <h2 className="text-2xl font-bold">All Reviews </h2>
+          <div className="flex items-center ">
             <div className="flex items-center space-x-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <FaStar

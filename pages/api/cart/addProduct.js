@@ -30,7 +30,7 @@ export default async function handler(req, res) {
           quantity: quantity || 1,
         });
       }
-
+      // console.log(req.body);
       await cart.save();
 
       res.status(200).json({ success: true, data: cart });
