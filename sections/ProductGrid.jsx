@@ -72,7 +72,7 @@ const ProductGrid = ({ selectedFilters }) => {
   };
 
   return (
-    <div className="flex-grow w-full flex-row  items-center  ">
+    <div className="flex-grow w-full flex-row  items-center ">
       <div className="flex items-center justify-between">
         <p>Default</p>
         <div className="flex items-center gap-3">
@@ -100,10 +100,10 @@ const ProductGrid = ({ selectedFilters }) => {
         ) : (
           <>
             {gridstate === "big" && (
-              <div className="flex flex-row flex-wrap justify-center items-center  w-full">
+              <div className="flex flex-wrap w-full px-18">
                 {products.map((item, index) => (
-                  <Link href={`/products/${item._id}`} key={index}>
-                    <div className="">
+                  <Link href={`/products/${item._id}`} key={index} className="w-1/2">
+                    <div className="w-full">
                       <BigCard
                         img={
                           item.variations && item.variations.length > 0
