@@ -1,22 +1,4 @@
-import { CiMail } from "react-icons/ci";
-import { FaUserFriends } from "react-icons/fa";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
-import { CgShutterstock } from "react-icons/cg";
-
-import { MdViewColumn } from "react-icons/md";
-import { IoFilterSharp } from "react-icons/io5";
-import { PiExportBold } from "react-icons/pi";
-import { FaChevronLeft } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
-import { MdDeleteOutline } from "react-icons/md";
-
-
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-
-
-
-
 
 const OrdersLists = () => {
 
@@ -29,11 +11,11 @@ const OrdersLists = () => {
 
         <div className="w-full flex items-center gap-4  mt-12">
             <div className="w-2/5">
-                <input placeholder="Search by customer number" className="appearance-none border rounded-lg w-full py-4 px-3">
+                <input placeholder="Search by customer number" className="appearance-none border rounded-lg w-full py-4 px-3 bg-gray-200">
                 </input>
             </div>
             <div className="w-1/5 bg-grey-200">
-                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-grey-200">
+                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-gray-200">
                     <option value="" disabled selected>Status</option>
                     <option value="25">Pending</option>
                     <option value="50">Processing</option>
@@ -42,7 +24,7 @@ const OrdersLists = () => {
                 </select>
             </div>
             <div className="w-1/5">
-                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-grey-200">
+                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-gray-200">
                     <option value="" disabled selected>Sort</option>
                     <option value="25">Price Low to High</option>
                     <option value="50">Price High to Low</option>
