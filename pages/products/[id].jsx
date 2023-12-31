@@ -13,12 +13,12 @@ import Stars from "../../components/Stars";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { AuthContextProvider, UserAuth } from "../../context/AuthContext";
+import { UserAuth } from "../../context/AuthContext";
 import ReviewsSection from "../../sections/ReviewsSection";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
-  const rating=0;
+  const rating = 0;
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("W");
   const [selectedPattern, setSelectedPattern] = useState("W");
@@ -214,15 +214,15 @@ const ProductDetails = () => {
                 <div className="flex items-center mb-4 ">
                   <span className="text-gray-700 mr-2">Price:</span>
                   <span className="text-lg lg:text-xl font-bold text-yellow-500">
-                  ₹ {productData.productPrice}
+                    ₹ {productData.productPrice}
                   </span>
                 </div>
-                
+
                 <div className="text-sm lg:text-base text-gray-600 mb-4 whitespace-normal">
                   {productData.productShortDescription}
                 </div>
                 <div className="flex items-center mb-4">
-                <Stars stars={rating} />
+                  <Stars stars={rating} />
                 </div>
                 <div className="border border-grey-300 border-solid border m-3 "></div>
                 <div className="flex flex-row border-2  overflow-x-scroll		scrollbar-hide">

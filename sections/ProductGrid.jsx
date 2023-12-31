@@ -44,22 +44,21 @@ const ProductGrid = ({ selectedFilters }) => {
       if (nonEmptyFilters.length === 0) {
         setProducts(originalProducts);
       } else {
-        const filteredProducts = products.filter((product) => {
+        const filteredProducts = originalProducts.filter((product) => {
           return product.variations.some(
             (variation) =>
-              nonEmptyFilters.includes(variation.productSize) ||
-              nonEmptyFilters.includes(variation.productColor)
+              nonEmptyFilters.includes(variation.productCategory) ||
+              nonEmptyFilters.includes(variation.productColor) ||
+              nonEmptyFilters.includes(variation.productPattern)
           );
         });
-
-        console.log(filteredProducts);
 
         setProducts(filteredProducts);
       }
     };
 
     filterProducts();
-  }, [selectedFilters]);
+  }, [selectedFilters, originalProducts]);
 
   const handlebigtile = () => {
     setGridstate("big");
@@ -102,7 +101,11 @@ const ProductGrid = ({ selectedFilters }) => {
             {gridstate === "big" && (
               <div className="flex flex-wrap w-full px-18">
                 {products.map((item, index) => (
-                  <Link href={`/products/${item._id}`} key={index} className="w-1/2">
+                  <Link
+                    href={`/products/${item._id}`}
+                    key={index}
+                    className="w-1/2"
+                  >
                     <div className="w-full">
                       <BigCard
                         img={
