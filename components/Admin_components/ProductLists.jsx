@@ -72,10 +72,10 @@ const ProductLists = () => {
                 </div>
             </div>
             <div className="w-full max-h-[550px] text-sm overflow-y-scroll scroll-smooth scrollbar-hide">
-                {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map((index) => (
-                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y">
+                {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map((item,index) => (
+                    <div key={index} className="w-full flex py-4 bg-[#f8f9fa] border-y">
                         <div className="w-1/12 flex items-center justify-center">
-                            {index}
+                            {item}
                         </div>
                         <div className="min-w-[100px] w-2/12 flex items-center justify-center">
                             Product Name

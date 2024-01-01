@@ -66,8 +66,8 @@ const OrdersLists = () => {
                 </div>
             </div>
             <div className="w-full max-h-[600px] text-sm overflow-y-scroll scroll-smooth scrollbar-hide rounded-b-xl">
-                {[1,2,3].map((index) => (
-                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y">
+                {[1,2,3].map((item,index) => (
+                    <div key={item} className="w-full flex py-4 bg-[#f8f9fa] border-y">
                         <div className="w-1/12 flex items-center justify-center">
                             8258				
                         </div>
@@ -100,8 +100,8 @@ const OrdersLists = () => {
                         </div>
                     </div>
                 ))}
-                {[1,2,3].map((index) => (
-                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y">
+                {[1,2,3].map((item,index) => (
+                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y" key={index}>
                         <div className="w-1/12 flex items-center justify-center">
                             8258				
                         </div>
@@ -134,8 +134,8 @@ const OrdersLists = () => {
                         </div>
                     </div>
                 ))}
-                {[1,2,3].map((index) => (
-                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y">
+                {[1,2,3].map((item,index) => (
+                    <div key={index} className="w-full flex py-4 bg-[#f8f9fa] border-y">
                         <div className="w-1/12 flex items-center justify-center">
                             8258				
                         </div>
