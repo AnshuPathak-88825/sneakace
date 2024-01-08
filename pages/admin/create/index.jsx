@@ -41,7 +41,17 @@ const Create = () => {
         throw new Error("Image upload failed");
       }
     } catch (error) {
-      console.error("Error uploading image to Cloudinary:", error.message);
+      toast.error(`Error uploading image to Cloudinary: ${error.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+      // console.error("Error uploading image to Cloudinary:", error.message);
       throw error;
     }
   };
@@ -55,7 +65,16 @@ const Create = () => {
       variations,
     };
     if (product.variations.length === 0) {
-      console.log("please add atlest 1 variation");
+        toast.warn('Please add atlest 1 variation!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
     } else {
       try {
         const response = await fetch("/api/product/create", {
@@ -74,12 +93,42 @@ const Create = () => {
           setProductQuantity("");
           setProductPrice("");
           setvariations([]);
-          console.log("Product created successfully");
+          // console.log("Product created successfully");
+          toast.success('Product created successfully!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
         } else {
           // Handle error response
-          console.error("Error creating product");
+          toast.error('Error creating product!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+          // console.error("Error creating product");
         }
       } catch (error) {
+        toast.error(`Error: ${error}!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         console.error("Error:", error);
       }
     }
