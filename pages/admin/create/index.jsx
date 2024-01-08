@@ -5,7 +5,7 @@ import DragAndDrop from "../../../components/Admin_components/DragAndDrop.jsx";
 import useFileSelection from "../../../components/Admin_components/useFileSelection.jsx";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
-
+import { toast } from 'react-toastify';
 const Create = () => {
   const [addFile, removeFile, selectedFiles] = useFileSelection();
   const [productName, setProductName] = useState("");
