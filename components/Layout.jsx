@@ -22,6 +22,7 @@ const Layout = ({ children, title_tag }) => {
   const isForget_Password=pathname==="/forget-password"
   const isProductDetails = pathname ? pathname.startsWith("/products/") : false; // Add null check here
   const [isLoading, setIsLoading] = useState(isHome);
+  const isMyOrder=pathname==="/my_order";
 
   useEffect(() => {
     if (isLoading) {
@@ -39,7 +40,7 @@ const Layout = ({ children, title_tag }) => {
         <SplashScreen finishLoading={() => setIsLoading(false)} />
       )}
 
-      {(isHome || isAdmin || isLogin || isProducts||isForget_Password || isCart || isCheckout || isWishlist || isMyAccount || isRegister || isProductDetails) && (
+      {(isHome || isAdmin || isLogin || isProducts||isForget_Password || isCart || isCheckout || isWishlist||isMyOrder || isMyAccount || isRegister || isProductDetails) && (
         <div className="flex flex-col min-h-screen">
           {(isHome || isWishlist || isCheckout || isCart ||isProducts) && <Navbar />}
           <main className="flex-grow">{children}</main>
