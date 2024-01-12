@@ -1,176 +1,164 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 const OrdersLists = () => {
+  const router = useRouter();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get("/api/order/getAllOrders");
+        setOrders(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching orders:", error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  const downloadPdf = (orderId) => {
+    console.log(`Download PDF for Order ID: ${orderId}`);
+    // Add your logic for downloading PDF here based on the orderId
+    // You can use a library like jsPDF or any other PDF generation library
+  };
+
+  const handleShipNow = async (orderId) => {
+    const updatedOrders = orders.map((order) =>
+      order.orderID === orderId
+        ? { ...order, orderStatus: "processing" }
+        : order
+    );
+    setOrders(updatedOrders);
+
+    try {
+      await axios.post(`/api/order/updateOrder`, {
+        orderId: orderId,
+        updatedData: {
+          orderStatus: "processing",
+        },
+      });
+    } catch (error) {
+      console.error("Error updating order status:", error.message);
+    }
+  };
 
   return (
-    <div className="w-full h-auto flex flex-col gap-4 px-16 py-4">
-        <div className="font-bold text-6xl">
-        Orders
-        </div>
+    <div className="w-full h-auto flex flex-col gap-4 px-8 py-4">
+      <div className="font-bold text-4xl mb-4">Orders</div>
 
-
-        <div className="w-full flex items-center gap-4  mt-12">
-            <div className="w-2/5">
-                <input placeholder="Search by customer number" className="appearance-none border rounded-lg w-full py-4 px-3 bg-gray-200">
-                </input>
-            </div>
-            <div className="w-1/5 bg-grey-200">
-                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-gray-200">
-                    <option value="" disabled selected>Status</option>
-                    <option value="25">Pending</option>
-                    <option value="50">Processing</option>
-                    <option value="100">Delivered</option> 
-                    <option value="100">All</option> 
-                </select>
-            </div>
-            <div className="w-1/5">
-                <select name="cars" id="cars" className="border rounded-lg w-full px-2 py-4 bg-gray-200">
-                    <option value="" disabled selected>Sort</option>
-                    <option value="25">Price Low to High</option>
-                    <option value="50">Price High to Low</option>
-                    <option value="100">New Orders</option> 
-                    <option value="100">Old Orders</option> 
-                </select>
-            </div>
-            <div className="w-1/5 bg-[#008080] rounded-lg flex items-center justify-center text-xl text-white font-semibold py-4">
-                <button>+ Search</button>
-            </div>
-
-        </div>
-
-        <div className="w-full min-w-[1000px] flex flex-col">
-            <div className="w-full flex bg-[#a4a9fc] text-white font-semibold py-4 px-2 rounded-t-xl bg-[#008080]">
-                <div className="w-1/12 flex items-center justify-center">
-                    <button>Order ID</button>
-                </div>
-                <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                    <button>TIME</button>
-                </div>
-                <div className="min-w-[100px] w-3/12 flex items-center justify-center">
-                    <button>SHIPPING ADDRESS</button>
-                </div>
-                <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                    <button>PHONE</button>
-                </div>
-                <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                    <button>AMOUNT</button>
-                </div>
-                <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                    <button>STATUS</button>
-                </div>
-                <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                    <button>ACTION</button>
-                </div>
-                <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                    <button>INVOICE</button>
-                </div>
-            </div>
-            <div className="w-full max-h-[600px] text-sm overflow-y-scroll scroll-smooth scrollbar-hide rounded-b-xl">
-                {[1,2,3].map((item,index) => (
-                    <div key={item} className="w-full flex py-4 bg-[#f8f9fa] border-y">
-                        <div className="w-1/12 flex items-center justify-center">
-                            8258				
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            Jan 28, 2024
-                        </div>
-                        <div className="min-w-[100px] w-3/12 flex items-center justify-center">
-                            P.O. Box 729, 8767 Dapibus Street
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            (383) 194-4548
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            $42.55
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            <div className="w-fit flex items-center justify-center px-4 py-1 bg-yellow-100 text-yellow-500 font-semibold rounded-full">
-                                Pending
-                            </div>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            <select name="cars" id="cars" className="border rounded-md w-full p-1 bg-grey-200">
-                                <option value="25">Pending</option>
-                                <option value="50">Processing</option>
-                                <option value="100">Delivered</option> 
-                            </select>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center text-xl text-grey-200">
-                            <MdOutlineRemoveRedEye />
-                        </div>
+      <div className="w-full overflow-x-auto">
+        <table className="w-full table-fixed">
+          <thead>
+            <tr className="bg-[#008080] text-white">
+              <th className="w-1/12 py-2">Order ID</th>
+              <th className="w-1/12 py-2">TIME</th>
+              <th className="w-3/12 py-2">SHIPPING ADDRESS</th>
+              <th className="w-1/12 py-2">PHONE</th>
+              <th className="w-1/12 py-2">AMOUNT</th>
+              <th className="w-2/12 py-2">
+                <span className="lg:hidden">P. Status</span>
+                <span className="hidden lg:inline">Payment Status</span>
+              </th>
+              <th className="w-2/12 py-2">
+                <span className="lg:hidden">D. Status</span>
+                <span className="hidden lg:inline">Delivery Status</span>
+              </th>
+              <th className="w-1/12 py-2">ACTION</th>
+              <th className="w-1/12 py-2">VIEW ORDER</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm bg-[#f8f9fa]">
+            {loading ? (
+              <tr>
+                <td colSpan="9" className="py-4 text-center">
+                  Loading...
+                </td>
+              </tr>
+            ) : (
+              orders.map((order) => (
+                <tr key={order._id} className="border-b">
+                  <td className="w-1/12 py-2 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                    {order.orderID}
+                  </td>
+                  <td className="w-1/12 py-2">
+                    {new Date(order.orderDate).toLocaleString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </td>
+                  <td className="w-3/12 py-2 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                    {order.billingAddress}
+                  </td>
+                  <td className="w-1/12 py-2 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                    {order.billingPhone}
+                  </td>
+                  <td className="w-1/12 py-2">${order.subTotal}</td>
+                  <td className="w-2/12 py-2">
+                    <div
+                      className={`w-fit py-1 px-4 bg-${
+                        order.paymentStatus === "pending"
+                          ? "yellow"
+                          : order.paymentStatus === "processing"
+                          ? "green"
+                          : "blue"
+                      }-100 text-${
+                        order.paymentStatus === "pending"
+                          ? "yellow"
+                          : order.paymentStatus === "processing"
+                          ? "green"
+                          : "blue"
+                      }-500 font-semibold rounded-full`}
+                    >
+                      {order.paymentStatus}
                     </div>
-                ))}
-                {[1,2,3].map((item,index) => (
-                    <div className="w-full flex py-4 bg-[#f8f9fa] border-y" key={index}>
-                        <div className="w-1/12 flex items-center justify-center">
-                            8258				
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            Jan 28, 2024
-                        </div>
-                        <div className="min-w-[100px] w-3/12 flex items-center justify-center">
-                            P.O. Box 729, 8767 Dapibus Street
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            (383) 194-4548
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            $42.55
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            <div className="w-fit flex items-center justify-center px-4 py-1 bg-green-100 text-green-500 font-semibold rounded-full">
-                                Processing
-                            </div>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            <select name="cars" id="cars" className="border rounded-md w-full p-1 bg-grey-200">
-                                <option value="25">Pending</option>
-                                <option value="50">Processing</option>
-                                <option value="100">Delivered</option> 
-                            </select>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center text-xl text-grey-200">
-                            <MdOutlineRemoveRedEye />
-                        </div>
-                    </div>
-                ))}
-                {[1,2,3].map((item,index) => (
-                    <div key={index} className="w-full flex py-4 bg-[#f8f9fa] border-y">
-                        <div className="w-1/12 flex items-center justify-center">
-                            8258				
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            Jan 28, 2024
-                        </div>
-                        <div className="min-w-[100px] w-3/12 flex items-center justify-center">
-                            P.O. Box 729, 8767 Dapibus Street
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            (383) 194-4548
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            $42.55
-                        </div>
-                        <div className="min-w-[100px] w-2/12 flex items-center justify-center">
-                            <div className="w-fit flex items-center justify-center px-4 py-1 bg-blue-100 text-blue-500 font-semibold rounded-full">
-                                Delivered
-                            </div>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center">
-                            <select name="cars" id="cars" className="border rounded-md w-full p-1 bg-grey-200">
-                                <option value="25">Pending</option>
-                                <option value="50">Processing</option>
-                                <option value="100">Delivered</option> 
-                            </select>
-                        </div>
-                        <div className="min-w-[100px] w-1/12 flex items-center justify-center text-xl text-grey-200">
-                            <MdOutlineRemoveRedEye />
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-      
+                  </td>
+                  <td className="w-2/12 py-2">
+                    <select
+                      name="deliveryStatus"
+                      id="deliveryStatus"
+                      className="border rounded-md w-full p-1 bg-gray-200"
+                      value={order.orderStatus}
+                      // Add onChange handler to update delivery status
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="processing">Processing</option>
+                      <option value="delivered">Delivered</option>
+                    </select>
+                  </td>
+                  <td className="w-1/12 py-2 text-center">
+                    {order.orderStatus === "pending" && (
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded-full"
+                        onClick={() => handleShipNow(order.orderID)}
+                      >
+                        Ship Now
+                      </button>
+                    )}
+                  </td>
+                  <td className="w-1/12 py-2 text-center text-xl">
+                    <button
+                      className="text-blue-500 hover:underline"
+                      onClick={() =>
+                        router.push(`/admin/orders/${order.orderID}`)
+                      }
+                    >
+                      <MdOutlineRemoveRedEye />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

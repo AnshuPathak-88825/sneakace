@@ -8,6 +8,8 @@ import axios from "axios";
 import { UserAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 
+import { toast } from 'react-toastify';
+
 const Cart = () => {
   const iconStyle = {
     cursor: "pointer",
@@ -98,6 +100,17 @@ const Cart = () => {
       return false;
     }
   }
+
+  const notifyWrongCoupon = () => toast.error('🦄 Wrong Coupon!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
 
   return (
     <>
@@ -268,6 +281,7 @@ const Cart = () => {
                 <button
                   className="w-fit bg-cyan-400 px-16 py-4 rounded-full text-2xl"
                   type="submit"
+                  onClick={notifyWrongCoupon}
                 >
                   Apply Coupon
                 </button>
