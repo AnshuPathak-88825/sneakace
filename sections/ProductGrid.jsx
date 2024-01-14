@@ -71,12 +71,12 @@ const ProductGrid = ({ selectedFilters }) => {
   };
 
   return (
-    <div className="flex-grow w-full flex-row  items-center ">
+    <div className="flex-1">
       <div className="flex items-center justify-between">
         <p>Default</p>
         <div className="flex items-center gap-3">
           <BsFillGridFill
-            size={25}
+            size={23}
             onClick={handlebigtile}
             className="cursor-pointer text-gray-400 hover:text-secondary transition-colors duration-300"
           />
@@ -99,14 +99,14 @@ const ProductGrid = ({ selectedFilters }) => {
         ) : (
           <>
             {gridstate === "big" && (
-              <div className="flex flex-wrap w-full px-18">
+              <div className="flex flex-wrap w-full pt-2 max-w-[900px] mx-2 lg:mx-16">
                 {products.map((item, index) => (
                   <Link
                     href={`/products/${item._id}`}
                     key={index}
                     className="w-1/2"
                   >
-                    <div className="w-full">
+                    <div className="w-full p-1">
                       <BigCard
                         img={
                           item.variations && item.variations.length > 0
@@ -128,7 +128,7 @@ const ProductGrid = ({ selectedFilters }) => {
               </div>
             )}
             {gridstate === "small" && (
-              <div className="flex flex-row flex-wrap  w-full justify-start	">
+              <div className="flex flex-row flex-wrap  w-full justify-start	 pt-2">
                 {products.map((item, index) => (
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="m-3">
@@ -151,7 +151,7 @@ const ProductGrid = ({ selectedFilters }) => {
               </div>
             )}
             {gridstate === "list" && (
-              <div className="flex flex-col w-full justify-center items-center ">
+              <div className="flex flex-col w-full justify-center items-center  pt-2">
                 {products.map((item, index) => (
                   <Link href={`/products/${item._id}`} key={index}>
                     <div className="">

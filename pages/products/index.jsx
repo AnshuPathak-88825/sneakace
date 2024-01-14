@@ -11,10 +11,10 @@ const Products = () => {
   };
   return (
     <div className="w-full p-3 bg-white  ">
-      <div className="mt-20">
+      <div className="mt-28">
         <TransitionEffect />
         <div className="container mx-auto">
-          <div className="flex flex-col-reverse lg:flex-row justify-center ">
+          <div className="flex flex-col-reverse lg:flex-row justify-center max-w-[1200px] mx-auto">
             <ProductSearch onFilterChange={handleFilterChange} />
             <ProductGrid selectedFilters={selectedFilters} />
           </div>
