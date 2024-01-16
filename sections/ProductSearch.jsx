@@ -76,22 +76,23 @@ const ProductSearch = ({ onFilterChange }) => {
           checked={selectedFilters.includes(filter)}
           onChange={() => handleFilterClick(filter)}
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          class="accent-purple-500"
         />
         <label
           htmlFor={filter || "default-checkbox"}
-          className="ml-2 text-sm text-black"
+          className="ml-2 text-sm text-gray-600"
         >
-          {filter}
+          {filter.toUpperCase()}
         </label>
       </div>
     ));
   };
 
   return (
-    <div className="w-full lg:w-1/4 p-3 text-black">
+    <div className="w-full lg:w-1/4 p-3 text-gray-600 font-Poppins_light font-extralight		">
       <div className="container mx-auto flex flex-col items-center lg:items-start gap-10">
-        <div className="flex flex-col items-center lg:items-start gap-5">
-          <p>Search</p>
+        <div className="flex flex-col items-center lg:items-start gap- 5 ">
+          <p className="text-lg ">Search</p>
           <div className="flex items-center gap-3 border rounded-lg p-2">
             <input
               type="text"
@@ -112,21 +113,21 @@ const ProductSearch = ({ onFilterChange }) => {
         </div>
 
         <div className="flex flex-col items-center lg:items-start gap-5">
-          <p>Categories</p>
+          <p className="text-lg">Categories</p>
           <div className="flex flex-col items-center lg:items-start">
             {renderFilterOptions(designFilterOptions, "design")}
           </div>
         </div>
 
         <div className="flex flex-col items-center lg:items-start gap-5">
-          <p>Colors</p>
+          <p className="text-lg">Colors</p>
           <div className="flex flex-col items-center lg:items-start">
             {renderFilterOptions(colorFilterOptions, "color")}
           </div>
         </div>
 
         <div className="flex flex-col items-center lg:items-start gap-5">
-          <p>Pattern</p>
+          <p className="text-lg">Pattern</p>
           <div className="flex flex-col items-center lg:items-start">
             {renderFilterOptions(patternFilterOptions, "pattern")}
           </div>
