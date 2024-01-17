@@ -8,7 +8,7 @@ import Link from "next/link.js";
 import Image from "next/image";
 import Stars from "../Stars.jsx";
 import ProductDetail from "../../sections/ProductDetail.jsx"
-const BigCard = ({ img, label, desc, rating, price, ProductId }) => {
+const BigCard = ({ img, label, desc, rating, price, ProductId,ProductInfo }) => {
   const [IsOpen, SetIsOpen] = useState(false);
   const openDialog = () => {
     SetIsOpen(true);
@@ -18,11 +18,11 @@ const BigCard = ({ img, label, desc, rating, price, ProductId }) => {
   }
 
   return (
-    <div className="p-2 border-4">
+    <div className="p-2">
       <div>
-        <ProductDetail IsOpen={IsOpen} IsClose={closeDialog} />
+      {ProductInfo&&<ProductDetail IsOpen={IsOpen} IsClose={closeDialog} ProductInfo={ProductInfo}/>}
       </div>
-      <div className=" rounded-lg ">
+      <div className=" rounded-lg border-2">
         <div className="max-h-fit flex items-center justify-center  overflow-hidden relative">
           <Image
             className="cursor-pointer w-full h-full py-4 md:py-12"
@@ -33,16 +33,16 @@ const BigCard = ({ img, label, desc, rating, price, ProductId }) => {
 
           />
           <div className="absolute bottom-0 w-full h-full flex items-end translate-y-20 hover:translate-y-0 transition-transform ease-in-out duration-500">
-            <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out">
+            <div className="p-2 xs:p-3 md:p-4 cursor-pointer bg-purple-500 hover:bg-black transition ease-in-out">
               <FaRegHeart />
             </div>
-            <Link href={`/products/${ProductId}`} className="hidden sm:block flex-1 text-center font-semibold text-md  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
+            <Link href={`/products/${ProductId}`} className="hidden sm:block flex-1 text-center font-semibold text-md cursor-pointer py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
               Select Option
             </Link>
             <Link href={`/products/${ProductId}`} className="block sm:hidden flex-1 text-center font-semibold text-xs  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
               Select
             </Link>
-            <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out" onClick={openDialog} >
+            <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out cursor-pointer" onClick={openDialog} >
               <FaRegEye />
               {/* <ProductDetail/> */}
             </div>

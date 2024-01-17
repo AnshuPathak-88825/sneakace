@@ -121,6 +121,7 @@ const ProductGrid = ({ selectedFilters }) => {
                         rating={5}
                         ProductId={item._id}
                         price={item.productPrice}
+                        ProductInfo={item}
                       />
                     </div>
                   </div>
