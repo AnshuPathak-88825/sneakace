@@ -149,22 +149,40 @@ const ProductDetails = () => {
       title: "Additional Information",
       id: "Additional Information",
       content: (
-        <div className="flex flex-col items-center lg:items-start mt-10 gap-5 text-black">
-          <div className="flex items-center gap-10">
-            <p className="text-lg">Weight</p>
-            <p className="text-lg">400g</p>
-          </div>
+        // <div className="flex flex-col items-center lg:items-start mt-10 gap-5 text-black border-2">
+        //   <div className="flex items-center gap-10">
+        //     <p className="text-lg">Weight</p>
+        //     <p className="text-lg">400g</p>
+        //   </div>
 
-          <div className="flex items-center gap-10">
-            <p className="text-lg">Dimensions</p>
-            <p className="text-lg">10 x 10 x 15 cm</p>
-          </div>
+        //   <div className="flex items-center gap-10">
+        //     <p className="text-lg">Dimensions</p>
+        //     <p className="text-lg">10 x 10 x 15 cm</p>
+        //   </div>
 
-          <div className="flex items-center gap-10">
-            <p className="text-lg">Materials</p>
-            <p className="text-lg">160% cotton, 40% polyester</p>
-          </div>
-        </div>
+        //   <div className="flex items-center gap-10">
+        //     <p className="text-lg">Materials</p>
+        //     <p className="text-lg">160% cotton, 40% polyester</p>
+        //   </div>
+        // </div>
+        <table className="table-fixed text-black text-[15px] ">
+
+          <tbody>
+            <tr>
+              <td className="px-2  sm:px-6  font-semibold		">Weight</td>
+              <td className="px-1 py-3 sm:px-6 py-3 text-[13] text-gray-600">400g</td>
+            </tr>
+            <tr>
+              <td className="px-1 py-3 sm:px-6 py-3 font-semibold		" >Dimensions</td>
+              <td className="px-1 py-3 sm:px-6 py-3 text-[13] text-gray-600">10 x 10 x 15 cm</td>
+            </tr>
+            <tr>
+              <td className="px-1 py-3 sm:px-6 py-3 font-semibold		">Materials</td>
+              <td className="px-1 py-3 sm:px-6 py-3 text-[13] text-gray-600">160% cotton, 40% polyester</td>
+
+            </tr>
+          </tbody>
+        </table>
       ),
     },
 
@@ -172,8 +190,8 @@ const ProductDetails = () => {
       title: "Description",
       id: "Description",
       content: (
-        <div className="flex items-center justify-center mt-10 text-center text-black">
-          <p className="text-lg">
+        <div className="flex    mt-10 text-center">
+          <p className="text-[15px] text-gray-600 font-thin">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi enim
             eum vel aliquam voluptates ut doloribus, reiciendis laborum soluta,
             inventore voluptatum ad laboriosam tenetur fugit porro sed
@@ -223,7 +241,7 @@ const ProductDetails = () => {
                 <div className="text-[16px]  text-gray-600 mb-4  font-poppins_light">
                   {productData.productShortDescription}
                 </div>
-                
+
                 <div className="border border-grey-300 border-solid border m-3 "></div>
                 <div className="flex flex-row border-2  overflow-x-scroll		scrollbar-hide">
                   {variation &&
@@ -266,7 +284,7 @@ const ProductDetails = () => {
                     </button>
                   </span>
 
-                  
+
                   <div onClick={addProductToCart}>
                     <FillupButton label={"ADD TO CART"} />
                   </div>

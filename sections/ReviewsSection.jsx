@@ -3,7 +3,7 @@ import Review from "../components/SingleReview.jsx";
 import { FaStar } from "react-icons/fa";
 import { UserAuth } from "../context/AuthContext.js";
 import axios from "axios";
-
+import FillupButton from "../components/FillupButton.jsx"
 const ReviewsSection = ({ product_id }) => {
   const { user } = UserAuth();
   const user_id = user.email.split("@")[0];
@@ -72,92 +72,62 @@ const ReviewsSection = ({ product_id }) => {
   }, [reviewChanges]);
 
   return (
-    <div className="container mx-auto p-2 border-2 bg-white text-black">
-      {/* Top Section */}
-      <div className="flex items-center mb-8 flex-wrap">
-        <div className="w-full md:w-1/2">
-          <h1 className="text-3xl font-bold">Average Rating</h1>
+    <div className="container my-4 p-2  bg-white text-black ">
+      <div className="flex items-start mb-8 flex-wrap  ">
+        <div className="w-full md:w-1/2  ">
+          <h1 className="text-[27px] font-bold text-gray-700">Average Rating</h1>
           <div className="flex items-center space-x-2 mt-2">
             {[1, 2, 3, 4, 5].map((star) => (
               <FaStar
                 key={star}
-                className={`w-6 h-6 ${
-                  star <= averageRating ? "text-yellow-300" : "text-gray-300"
-                }`}
+                className={`w-6 h-6 ${star <= averageRating ? "text-yellow-300" : "text-gray-300"
+                  }`}
               />
             ))}
             <span className="ml-2 text-xl font-bold">
               {averageRating.toFixed(1)}
             </span>
           </div>
+          <div>
+
+            {reviews.map((review, index) => (
+              <Review key={index} {...review} />
+            ))}
+          </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-end">
-          {[5, 4, 3, 2, 1].map((value) => (
-            <div key={value} className="flex flex-col items-center ">
-              <span className="text-gray-500">
-                {value} (
-                {`${
-                  (reviews.filter((review) => review.rating === value).length /
-                    reviews.length) *
-                  100
-                }%`}
-                )
-              </span>
-              <div className="bg-green-200 w-16 h-2 mt-2 relative">
-                <div
-                  className="bg-yellow-500 h-full rounded-r-full"
-                  style={{
-                    width: `${
-                      (reviews.filter((review) => review.rating === value)
-                        .length /
-                        reviews.length) *
-                      100
-                    }%`,
-                  }}
-                ></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom Section */}
-      <div>
-        <div className="flex justify-between items-center mb-2 justify-start flex-wrap">
-          <h2 className="text-2xl font-bold">All Reviews </h2>
           <div className="flex-row flex-wrap items-center ">
             <div className="flex items-center space-x-2 m-1">
               {[1, 2, 3, 4, 5].map((star) => (
                 <FaStar
                   key={star}
-                  className={`w-6 h-6 cursor-pointer ${
-                    star <= newReview.rating
-                      ? "text-yellow-300"
-                      : "text-gray-300"
-                  }`}
+                  className={`w-6 h-6 cursor-pointer ${star <= newReview.rating
+                    ? "text-yellow-300"
+                    : "text-gray-300"
+                    }`}
                   onClick={() => handleRatingChange(star)}
                 />
               ))}
             </div>
-            <textarea
-              value={newReview.comment}
-              onChange={handleCommentChange}
-              placeholder="Write your review..."
-              className="mx-2 px-2 py-1 border border-gray-300 rounded"
-            />
-            <button
-              onClick={handleSubmitReview}
-              className="bg-primary text-black px-4 py-2 rounded-md"
-            >
+            <div>
+              <textarea
+                value={newReview.comment}
+                onChange={handleCommentChange}
+                placeholder="Write your review..."
+                className="outline-none border-2 rounded p-2 sm:m-2 w-[220px] h-[100px] m-auto sm:w-[300px] text-gray-700"
+              />
+            </div>
+            <div onClick={handleSubmitReview} className="font-Poppins_light cursor-pointer text-white border-2  inline  bg-gray-600  rounded-sm	 m-2 py-3 px-7 font-Poppins_light">
               Submit
-            </button>
+
+
+            </div>
+
           </div>
         </div>
-        {/* Review Components */}
-        {reviews.map((review, index) => (
-          <Review key={index} {...review} />
-        ))}
       </div>
+
+
     </div>
   );
 };
