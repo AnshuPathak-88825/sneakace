@@ -3,8 +3,6 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 const ProductCarasoulDetails = ({ variation, index }) => {
-  console.log(variation)
-  console.log(index);
   return (
     <div className="text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Carousel
@@ -17,7 +15,8 @@ const ProductCarasoulDetails = ({ variation, index }) => {
         
 
         {variation&&variation[0].productImage.map((item, index) => (
-          <img key={index} src={item} height={400} />
+         
+          <Image src={item} key={index} width={129} height={400} alt="shoe" />
         ))}
       </Carousel>
     </div>
