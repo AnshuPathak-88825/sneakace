@@ -16,7 +16,7 @@ const ProductCarasoulDetails = ({ variation, index }) => {
 
         {variation&&variation[0].productImage.map((item, index) => (
          
-          <Image src={item} key={index} width={129} height={400} alt="shoe" />
+         <img key={index} src={item} height={400} />
         ))}
       </Carousel>
     </div>
