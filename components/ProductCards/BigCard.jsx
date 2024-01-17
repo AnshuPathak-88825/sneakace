@@ -1,20 +1,29 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiFillStar, AiOutlineStar } from "react-icons";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
-
+import Link from "next/link.js";
 import Image from "next/image";
 import Stars from "../Stars.jsx";
+import ProductDetail from "../../sections/ProductDetail.jsx"
+const BigCard = ({ img, label, desc, rating, price, ProductId }) => {
+  const [IsOpen, SetIsOpen] = useState(false);
+  const openDialog = () => {
+    SetIsOpen(true);
+  };
+  const closeDialog = () => {
+    SetIsOpen(false);
+  }
 
-const BigCard = ({ img, label, desc, rating, price }) => {
-  const [active,setActive] = useState(false);
   return (
-
-    <div className="p-2">
+    <div className="p-2 border-4">
+      <div>
+        <ProductDetail IsOpen={IsOpen} IsClose={closeDialog} />
+      </div>
       <div className=" rounded-lg ">
-        <div className="max-h-fit flex items-center justify-center relative overflow-hidden">
+        <div className="max-h-fit flex items-center justify-center  overflow-hidden relative">
           <Image
             className="cursor-pointer w-full h-full py-4 md:py-12"
             src={img[0]}
@@ -27,29 +36,31 @@ const BigCard = ({ img, label, desc, rating, price }) => {
             <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out">
               <FaRegHeart />
             </div>
-            <div className="hidden sm:block flex-1 text-center font-semibold text-md  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
+            <Link href={`/products/${ProductId}`} className="hidden sm:block flex-1 text-center font-semibold text-md  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
               Select Option
-            </div>
-            <div className="block sm:hidden flex-1 text-center font-semibold text-xs  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
+            </Link>
+            <Link href={`/products/${ProductId}`} className="block sm:hidden flex-1 text-center font-semibold text-xs  py-2 md:py-3 bg-purple-500 hover:bg-black transition ease-in-out">
               Select
-            </div>
-            <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out">
+            </Link>
+            <div className="p-2 xs:p-3 md:p-4 bg-purple-500 hover:bg-black transition ease-in-out" onClick={openDialog} >
               <FaRegEye />
+              {/* <ProductDetail/> */}
             </div>
           </div>
         </div>
-        
-        <div className="absolute flex items-center justify-center top-[50%] left-[50%] opacity-0 group-hover:opacity-100 transition-all ease-in duration-300">
+
+        {/* <div className="absolute flex items-center justify-center top-[50%] left-[50%]  transition-all ease-in duration-300">
           <div className="flex items-center gap-3 absolute ">
             <div className="p-2 rounded-full bg-secondary text-background cursor-pointer">
               <BsBoxArrowInRight size={30} className="text-background" />
             </div>
 
             <div className="p-2 rounded-full bg-secondary text-background cursor-pointer">
-              <AiOutlineEye size={30} className="text-background" />
+              <AiOutlineEye size={30} className="text-background" onClick={()=>{setActive(!active)}} />
+              
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={`flex-col justify-center items-center text-black font-Poppins_light  `}>
         <div className="text-center m-2">{label}</div>

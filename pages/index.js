@@ -10,6 +10,7 @@ export default function Home() {
     <>
       <HomePage />
       <Categories />
+      <ProductDetail/>
       <Customize />
       <Trending />
       <Testimonial />

@@ -101,8 +101,7 @@ const ProductGrid = ({ selectedFilters }) => {
             {gridstate === "big" && (
               <div className="flex flex-wrap w-full pt-2 max-w-[900px] mx-2 lg:mx-16">
                 {products.map((item, index) => (
-                  <Link
-                    href={`/products/${item._id}`}
+                  <div
                     key={index}
                     className="w-1/2"
                   >
@@ -120,10 +119,11 @@ const ProductGrid = ({ selectedFilters }) => {
                         }
                         desc={item.productShortDescription}
                         rating={5}
+                        ProductId={item._id}
                         price={item.productPrice}
                       />
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}
