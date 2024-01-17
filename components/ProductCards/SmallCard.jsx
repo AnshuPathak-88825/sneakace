@@ -7,7 +7,7 @@ import Stars from "../Stars.jsx";
 
 const SmallCard = ({ img, label, desc, rating, price }) => {
   return (
-    <div className="px-4 py-2  border border-gray-200 rounded-xl border-2 ">
+    <div className="px-4 py-2   border-gray-200 rounded-xl border-2 ">
       <div className=" relative overflow-hidden mt-2 rounded-lg m-3">
         <div className="h-[250px] w-[250px] ">
         <Image

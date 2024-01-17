@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { UserAuth } from "../../context/AuthContext";
 import ReviewsSection from "../../sections/ReviewsSection";
+import FillupButton from "../../components/FillupButton";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
@@ -208,22 +209,21 @@ const ProductDetails = () => {
                 )}
               </div>
               <div className="lg:w-1/2 flex-1 pl-0   p-5">
-                <h2 className="text-lg lg:text-2xl text-yellow-500 font-bold mb-4">
+                <h2 className="text-[35px]  text-black font-normal mb-4 font-Poppins_light" >
                   {productData && productData.productName}
                 </h2>
                 <div className="flex items-center mb-4 ">
-                  <span className="text-gray-700 mr-2">Price:</span>
-                  <span className="text-lg lg:text-xl font-bold text-yellow-500">
+                  <span className="text-[30px] font-normal text-red-500 font-Poppins_light">
                     ₹ {productData.productPrice}
                   </span>
-                </div>
-
-                <div className="text-sm lg:text-base text-gray-600 mb-4 whitespace-normal">
-                  {productData.productShortDescription}
                 </div>
                 <div className="flex items-center mb-4">
                   <Stars stars={rating} />
                 </div>
+                <div className="text-[16px]  text-gray-600 mb-4  font-poppins_light">
+                  {productData.productShortDescription}
+                </div>
+                
                 <div className="border border-grey-300 border-solid border m-3 "></div>
                 <div className="flex flex-row border-2  overflow-x-scroll		scrollbar-hide">
                   {variation &&
@@ -266,12 +266,10 @@ const ProductDetails = () => {
                     </button>
                   </span>
 
-                  <button
-                    onClick={addProductToCart}
-                    className=" bg-yellow-500 text-white m-2 px-8 lg:px-6 py-4  hover:bg-yellow-400 focus:outline-none focus:shadow-outline"
-                  >
-                    Add to Cart
-                  </button>
+                  
+                  <div onClick={addProductToCart}>
+                    <FillupButton label={"ADD TO CART"} />
+                  </div>
                   <div className="text-gray-700 text-xl p-0 m-3 cursor-pointer">
                     <IoMdHeartEmpty onClick={addToWishlist} />
                   </div>

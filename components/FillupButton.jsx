@@ -13,7 +13,7 @@ const FillupButton = (label) => {
   };
 
   return (
-    <div className="text-white  relative overflow-hidden " onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+    <div className="text-white  relative overflow-hidden cursor-pointer " onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
       <div
         className={`bg-purple-600 rounded-sm	 m-1 py-3 px-7 absolute font-Poppins_light ${!active ? '-translate-x-[220px]' : 'translate-x-0'} transition ease-in-out duration-500`}
       >

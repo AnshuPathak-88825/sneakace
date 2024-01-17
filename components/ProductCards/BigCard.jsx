@@ -90,7 +90,7 @@ const BigCard = ({
         <div className="text-center m-2 text-[25px] cursor-pointer font-normal hover:text-purple-500 transition ease-in-out duration-300">
           <Link href={`/products/${ProductId}`}>{label}</Link>
         </div>
-        <div className="m-auto flex m-2 items-center justify-center">
+        <div className="m-auto flex  items-center justify-center">
           <Stars Stars={rating} />
         </div>{" "}
         <div className="text-center m-2 font-normal">₹ {price}</div>
