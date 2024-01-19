@@ -8,7 +8,7 @@ import Stars from "../components/Stars";
 import { useEffect } from "react";
 import { UserAuth } from "../context/AuthContext";
 import axios from "axios";
-
+import { showtoast } from "../utilis/showtoast"
 
 const ProductDetail = ({ IsOpen, IsClose, ProductInfo }) => {
   const [variation, setVariation] = useState();
@@ -23,7 +23,7 @@ const ProductDetail = ({ IsOpen, IsClose, ProductInfo }) => {
   const [selectedPattern, setSelectedPattern] = useState("W"); // Corrected default pattern
   const [count, setCount] = useState(1);
   const [vImage, setVimage] = useState(0);
-  const [id,setid]=useState("");
+  const [id, setid] = useState("");
   useEffect(() => {
     if (ProductInfo) {
       setVariation(ProductInfo.variations);
@@ -31,10 +31,10 @@ const ProductDetail = ({ IsOpen, IsClose, ProductInfo }) => {
       setVariationId(ProductInfo.variations[0]._id);
       setid(ProductInfo._id);
       return;
-      
+
     }
 
-  }, [ProductInfo, setVariation, setproductData, setVariation,id,setid])
+  }, [ProductInfo, setVariation, setproductData, setVariation, id, setid])
 
   if (!IsOpen) {
     return null;
@@ -55,12 +55,13 @@ const ProductDetail = ({ IsOpen, IsClose, ProductInfo }) => {
       });
 
       if (response.status === 200) {
-        console.log("Product added to cart successfully");
+        showtoast("success", "Product added to cart successfully");
+
       } else {
-        console.error("Error adding product to cart:", response.statusText);
+        showtoast("error", `Error adding product to cart ${response.statusText}`)
       }
     } catch (error) {
-      console.error("Error adding product to cart:", error.message);
+      showtoast(`Error adding product to cart: ${error.message}`)
     }
   };
   const addToWishlist = async () => {
@@ -77,12 +78,12 @@ const ProductDetail = ({ IsOpen, IsClose, ProductInfo }) => {
       });
 
       if (response.status === 200) {
-        console.log("Product added to wishlist successfully");
+        showtoast("success", "Product added to wishlist successfully");
       } else {
-        console.error("Error adding product to wishlist:", response.statusText);
+        showtoast("error", `Error adding product to wishlist ${response.statusText}`);
       }
     } catch (error) {
-      console.error("Error adding product to wishlist:", error.message);
+      showtoast("error", `Error adding product to wishlist ${error.message}`);
     }
   };
 

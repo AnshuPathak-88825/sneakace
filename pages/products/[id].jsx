@@ -149,22 +149,6 @@ const ProductDetails = () => {
       title: "Additional Information",
       id: "Additional Information",
       content: (
-        // <div className="flex flex-col items-center lg:items-start mt-10 gap-5 text-black border-2">
-        //   <div className="flex items-center gap-10">
-        //     <p className="text-lg">Weight</p>
-        //     <p className="text-lg">400g</p>
-        //   </div>
-
-        //   <div className="flex items-center gap-10">
-        //     <p className="text-lg">Dimensions</p>
-        //     <p className="text-lg">10 x 10 x 15 cm</p>
-        //   </div>
-
-        //   <div className="flex items-center gap-10">
-        //     <p className="text-lg">Materials</p>
-        //     <p className="text-lg">160% cotton, 40% polyester</p>
-        //   </div>
-        // </div>
         <table className="table-fixed text-black text-[15px] ">
 
           <tbody>
