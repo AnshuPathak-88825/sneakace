@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Sidebar from "../../../components/Admin_components/Sidebar";
-import { Button, Card } from "antd";
+import { Button, Card, message } from "antd";
 import DragAndDrop from "../../../components/Admin_components/DragAndDrop.jsx";
 import useFileSelection from "../../../components/Admin_components/useFileSelection.jsx";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { showtoast } from "../../../utilis/showtoast.js"
 const Create = () => {
   const [addFile, removeFile, selectedFiles] = useFileSelection();
   const [productName, setProductName] = useState("");
@@ -41,17 +41,8 @@ const Create = () => {
         throw new Error("Image upload failed");
       }
     } catch (error) {
-      toast.error(`Error uploading image to Cloudinary: ${error.message}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
-      // console.error("Error uploading image to Cloudinary:", error.message);
+
+      showtoast("error", `Error uploading image to Cloudinary: ${error.message}`)
       throw error;
     }
   };
@@ -65,16 +56,7 @@ const Create = () => {
       variations,
     };
     if (product.variations.length === 0) {
-        toast.warn('Please add atlest 1 variation!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });
+      showtoast("warn", "Please add atlest 1 variation!");
     } else {
       try {
         const response = await fetch("/api/product/create", {
@@ -93,43 +75,12 @@ const Create = () => {
           setProductQuantity("");
           setProductPrice("");
           setvariations([]);
-          // console.log("Product created successfully");
-          toast.success('Product created successfully!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
+          showtoast("success", "Product created successfully!");
         } else {
-          // Handle error response
-          toast.error('Error creating product!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
-          // console.error("Error creating product");
+          showtoast("error", "Error creating product!");
         }
       } catch (error) {
-        toast.error(`Error: ${error}!`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });
-        console.error("Error:", error);
+        showtoast("error", `Error: ${error}!`);
       }
     }
   };
