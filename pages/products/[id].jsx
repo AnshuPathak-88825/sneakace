@@ -16,7 +16,7 @@ import axios from "axios";
 import { UserAuth } from "../../context/AuthContext";
 import ReviewsSection from "../../sections/ReviewsSection";
 import FillupButton from "../../components/FillupButton";
-
+import { showtoast } from "../../utilis/showtoast"
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
   const rating = 0;
@@ -69,12 +69,13 @@ const ProductDetails = () => {
       });
 
       if (response.status === 200) {
-        console.log("Product added to cart successfully");
+        showtoast("success", `Product added to cart successfully`)
       } else {
-        console.error("Error adding product to cart:", response.statusText);
+        console.error(t);
+        showtoast("error", `Error adding product to cart: ${response.statusText}`)
       }
     } catch (error) {
-      console.error("Error adding product to cart:", error.message);
+      showtoast("error", `Error adding product to cart: ${error.message}`)
     }
   };
 
@@ -91,12 +92,16 @@ const ProductDetails = () => {
       });
 
       if (response.status === 200) {
-        console.log("Product added to wishlist successfully");
+        showtoast("success", `Product added to wishlist successfully`)
+
+        
       } else {
-        console.error("Error adding product to wishlist:", response.statusText);
+        showtoast("error", `Error adding product to wishlist: ${response.statusText}`)
+
       }
     } catch (error) {
-      console.error("Error adding product to wishlist:", error.message);
+      console.error("Error adding product to wishlist:",  error.message);
+
     }
   };
 
