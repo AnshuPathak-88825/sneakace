@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 import BigCard from "../components/ProductCards/BigCard";
 import SmallCard from "../components/ProductCards/SmallCard";
 import ListCard from "../components/ProductCards/ListCard";
-
+import Loader from "../components/Loader";
 import axios from "axios";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { AiOutlineEye } from "react-icons/ai";
@@ -95,16 +95,15 @@ const ProductGrid = ({ selectedFilters }) => {
 
       <div className="flex items-center mt-1 w-full ">
         {loading ? (
-          <div>Loading...</div>
+          <div className="w-full h-screen flex justify-center items-center">
+            <Loader />
+          </div>
         ) : (
           <>
             {gridstate === "big" && (
               <div className="flex flex-wrap w-full pt-2 max-w-[900px] mx-2 lg:mx-16">
                 {products.map((item, index) => (
-                  <div
-                    key={index}
-                    className="w-1/2"
-                  >
+                  <div key={index} className="w-1/2">
                     <div className="w-full p-1">
                       <BigCard
                         img={

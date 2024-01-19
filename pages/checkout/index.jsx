@@ -221,12 +221,12 @@ const checkOut = () => {
               <div className="flex flex-col md:flex-row gap-6 md:gap-4">
                 <div className="flex flex-col gap-2 items-start justify-center w-full nd:w-1/2">
                   <div className="text-xl text-black">First Name</div>
-                  <div className="w-full border-2 border-slate-200 shadow">
+                  <div className="w-full border-2 border-slate-200 shadow outline-none ">
                     <input
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       type="text"
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -237,7 +237,7 @@ const checkOut = () => {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       type="text"
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const checkOut = () => {
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     type="text"
-                    className=" w-full px-8 text-black text-xl py-4 "
+                    className=" w-full px-8 text-black text-xl py-4 outline-none "
                   ></input>
                 </div>
               </div>
@@ -261,7 +261,7 @@ const checkOut = () => {
                     placeholder="Select the Country"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    className="w-full border-1 border-slate-200 bg-white px-8 appearance-none text-slate-400 text-xl py-4 "
+                    className="w-full border-1 border-slate-200 outline-none  bg-white px-8 appearance-none text-slate-400 text-xl py-4 "
                   >
                     <option>Select the Country</option>
                     <option>INDIA</option>
@@ -280,7 +280,7 @@ const checkOut = () => {
                     onChange={(e) => setAddress(e.target.value)}
                     type="text"
                     placeholder="House number and street name"
-                    className="  w-full px-8 text-black text-xl py-4 "
+                    className="  w-full px-8 text-black text-xl py-4 outline-none "
                   ></input>
                 </div>
                 <div className="w-full border-2 border-slate-200 shadow">
@@ -289,7 +289,7 @@ const checkOut = () => {
                     onChange={(e) => setAddress2(e.target.value)}
                     type="text"
                     placeholder="Apartment, suite, unit etc."
-                    className="w-full px-8 text-black text-xl py-4 "
+                    className="w-full px-8 text-black text-xl py-4 outline-none "
                   ></input>
                 </div>
               </div>
@@ -300,7 +300,7 @@ const checkOut = () => {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     type="text"
-                    className="w-full px-8 text-black text-xl py-4 "
+                    className="w-full px-8 text-black text-xl py-4 outline-none "
                   ></input>
                 </div>
               </div>
@@ -313,7 +313,7 @@ const checkOut = () => {
                       type="text"
                       value={state}
                       onChange={(e) => setState(e.target.value)}
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -324,7 +324,7 @@ const checkOut = () => {
                       value={postcodeZIP}
                       onChange={(e) => setPostcodeZIP(e.target.value)}
                       type="text"
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -338,7 +338,7 @@ const checkOut = () => {
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ const checkOut = () => {
                       type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className=" w-full px-8 text-black text-xl py-4 "
+                      className=" w-full px-8 text-black text-xl py-4 outline-none "
                     ></input>
                   </div>
                 </div>
@@ -366,7 +366,7 @@ const checkOut = () => {
                     onChange={(e) => {
                       setOrderNotes(e.target.value);
                     }}
-                    className="w-full h-[150px] text-black border-2 border-slate-200 shadow p-6"
+                    className="w-full h-[150px] text-black border-2 border-slate-200 shadow p-6 outline-none "
                     placeholder="Notes about your order, e.g. special notes for delivery."
                   ></textarea>
                 </div>
